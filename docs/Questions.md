@@ -18,3 +18,4 @@ Perguntas a serem feitas pelo CLI:
 * Deseja gerar .gitignore com base na tecnologia passada?
 * Deseja inserir o template da pipeline base (build imagem)?
 * Tem sonar? values.yml? editorconfig? LICENSE?
+* Incluir templates gitlab merge-request?

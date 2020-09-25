@@ -1,0 +1,6 @@
+stages: [ "Lint", "Test", "Build", "Scan", "Release" ]
+
+Debug:
+  stage: .pre
+  script:
+    - echo "Initial GitLab CI pipeline"
