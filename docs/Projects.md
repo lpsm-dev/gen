@@ -4,8 +4,10 @@
 
 Compilado de projetos inspiradores para o Hey-Gen:
 
-* https://github.com/github/gitignore.git
-* https://github.com/gitattributes/gitattributes.git
-* https://github.com/toshi0607/gig.git
+* https://github.com/github/gitignore
+* https://github.com/gitattributes/gitattributes
+* https://github.com/toshi0607/gig
 * https://github.com/src-d/enry
 * https://github.com/toptal/gitignore
+* https://gitlab.com/gitlab-org/ecosystem-team/lab
+

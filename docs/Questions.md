@@ -16,3 +16,4 @@ Perguntas a serem feitas pelo CLI:
 * É docker? Se sim, qual a imagem default? Se o Dockerfile já existir, skip. Caso contrário prossiga com o input passado (Automatiza Makefile com comandos Docker e Dockerfile).
 * Quer utilizar a padronização Commitlint + Husky + Commitzen?
 * Deseja gerar .gitignore com base na tecnologia passada?
+* Deseja inserir o template da pipeline base (build imagem)?
