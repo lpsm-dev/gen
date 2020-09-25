@@ -21,6 +21,13 @@ You must send the project to your GitHub after the modifications
 > 3. git push origin master
 >
 
+## To-Do
+
+* [commands](./docs/Commands.md)
+* [projects](./docs/Projects.md)
+* [questions](./docs/Questions.md)
+* [technologyes](./docs/Technologys.md)
+
 ## ➤ Show your support
 
 Give a ⭐️ if this project helped you!
