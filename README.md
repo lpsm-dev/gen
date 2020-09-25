@@ -26,7 +26,7 @@ You must send the project to your GitHub after the modifications
 * [commands](./docs/Commands.md)
 * [projects](./docs/Projects.md)
 * [questions](./docs/Questions.md)
-* [technologyes](./docs/Technologys.md)
+* [technologys](./docs/Technologys.md)
 
 ## ➤ Show your support
 
