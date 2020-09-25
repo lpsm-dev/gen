@@ -1,0 +1,22 @@
+# ignored by docker build system
+.git*
+
+Makefile
+.dockerignore
+Dockerfile
+LICENSE
+
+*.yml
+*.json
+*.md
+
+bin/
+
+/node_modules
+/docs
+
+README.md
+*.lock
+.gitignore
+.editorconfig
+/.gitlab
