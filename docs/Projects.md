@@ -1,6 +1,6 @@
 # KeyGen
 
-## Project ideas 
+## Ideas 
 
 Compilado de projetos inspiradores para o Hey-Gen:
 

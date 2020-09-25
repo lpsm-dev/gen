@@ -1,6 +1,6 @@
 # KeyGen
 
-## Commands ideas 
+## Ideas 
 
 Ideais para os subcomandos do CLI:
 
