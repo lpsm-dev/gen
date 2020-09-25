@@ -1,4 +1,4 @@
-stages: [ "Lint", "Test", "Build", "Scan", "Release" ]
+stages: [ "Test", "Build", "Scan", "Release", "Deploy", "Verify" ]
 
 Debug:
   stage: .pre
