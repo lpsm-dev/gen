@@ -17,3 +17,4 @@ Perguntas a serem feitas pelo CLI:
 * Quer utilizar a padronização Commitlint + Husky + Commitzen?
 * Deseja gerar .gitignore com base na tecnologia passada?
 * Deseja inserir o template da pipeline base (build imagem)?
+* Tem sonar? values.yml? editorconfig? LICENSE?

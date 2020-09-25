@@ -4,16 +4,21 @@
 
 Ideais para os subcomandos do CLI:
 
-* heygen readme
-* heygen gig
-  * heygen gig autogen
+* gen readme
+  * -f --file
+  * -t --template 
+* gen gig
+  * gen gig autogen
     * -f --file
-  * heygen gig gen [template]
+  * gen gig gen [template]
     * -f --file
-  * heygen gig list
-  * heygen gig search
-* heygen ci
-* heygen project
-* heygen structure
-* heygen status
-* heygen version
+  * gen gig list
+  * gen gig search
+* gen sonar
+  * -d --default
+* gen ci
+* gen project
+* gen structure
+* gen license
+* gen status
+* gen version
