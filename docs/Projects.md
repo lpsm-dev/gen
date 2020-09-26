@@ -13,3 +13,4 @@ Compilado de projetos inspiradores para o Hey-Gen:
 * https://gitlab.com/gitlab-org/ecosystem-team/lab
 * https://github.com/nishanths/license
 * https://github.com/arshad/license-generator
+* https://github.com/nikoksr/proji
