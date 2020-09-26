@@ -1,6 +1,6 @@
 # KeyGen
 
-## Ideas 
+## Tecnologias 
 
 Tecnologias utilizadas no projeto:
 
@@ -8,3 +8,7 @@ Tecnologias utilizadas no projeto:
 * Docker
 * GitHub Actions
 * GitLab CI
+
+## Projetos
+
+* https://github.com/golangci/golangci-lint
