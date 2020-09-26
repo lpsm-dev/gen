@@ -1,0 +1,45 @@
+version: "3.8"
+
+# ==============================================================================
+# ANCHORS
+# ==============================================================================
+
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "500k"
+    max-file: "20"
+
+x-entrypoint: &default-entrypoint
+  entrypoint: >
+    /bin/sh -c "
+      set -e
+      echo Waiting TTY interation..
+      /bin/bash || exit 0
+    "
+
+# ==============================================================================
+# SERVICES
+# ==============================================================================
+
+services:
+
+  gen:
+    container_name: gen
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: [ "./.env" ]
+    <<: *default-entrypoint
+    stdin_open: true
+    tty: true
+    restart: on-failure
+    logging: *default-logging
+    networks: [ "gen" ]
+
+# ==============================================================================
+# NETWORKS
+# ==============================================================================
+
+networks:
+  gen:
