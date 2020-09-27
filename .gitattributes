@@ -8,3 +8,5 @@
 *.gif binary
 *.png binary
 *.jpeg binary
+
+go.sum merge=union

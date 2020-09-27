@@ -58,5 +58,4 @@ static/
 *.vscode
 *.idea
 *.txt
-go.sum
 *.tar.gz

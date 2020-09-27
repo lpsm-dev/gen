@@ -1,11 +1,21 @@
-[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/lpmatos/gen/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen) 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/33544dd8a7f7408a93220542445f429e)](https://www.codacy.com/manual/lpmatos/gen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lpmatos/gen&amp;utm_campaign=Badge_Grade)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/lpmatos/gen/blob/master/LICENSE)
 
 ## Documentation
 
-* [commands](./docs/Commands.md)
-* [projects](./docs/Projects.md)
-* [questions](./docs/Questions.md)
-* [technologys](./docs/Technologys.md)
+* [Commands](./docs/Commands.md)
+* [Projects](./docs/Projects.md)
+* [Questions](./docs/Questions.md)
+* [Technologys](./docs/Technologys.md)
+
+## Features
+
+* Project
+* Gitignore
+* License
+* Status
+* Readme
 
 ## ➤ How to contribute
 

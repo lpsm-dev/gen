@@ -20,3 +20,4 @@ README.md
 .gitignore
 .editorconfig
 /.gitlab
+/.github
