@@ -20,13 +20,8 @@ import (
 	"os"
 
 	"github.com/common-nighthawk/go-figure"
+	"github.com/lpmatos/gen/internal/constants"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-)
-
-var (
-	useConfigFile bool                   // indicate using config (from $PWD/.cgapp.yml)
-	projectConfig map[string]interface{} // parse project config
 )
 
 type rootCmd struct {
@@ -38,12 +33,7 @@ func newRootCmd() *rootCmd {
 	cmd := &cobra.Command{
 		Use:   "gen [sub]",
 		Short: "A powerful CLI that helps your project startup",
-		Long: `Description:
-
-This CLI tool helps to start a Git project using some good standards.
-
-A CLI tool that automate your project startup (pretty README.md, LICENSE, gitignore...)
-	`,
+		Long:  constants.RootHelpMessage,
 	}
 	cmd.AddCommand(
 		newCompletionCommand().cmd,
@@ -60,27 +50,6 @@ func init() {
 		endline()
 	}
 	title()
-	cobra.OnInitialize(initConfig)
-}
-
-// initConfig reads in config file, if set.
-func initConfig() {
-	if useConfigFile {
-		// Get current directory.
-		currentDir, _ := os.Getwd()
-
-		viper.AddConfigPath(currentDir) // add config path
-		viper.SetConfigName(".gen")     // set config name
-
-		// If a config file is found, read it in.
-		if err := viper.ReadInConfig(); err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		// Parse configs.
-		_ = viper.UnmarshalKey("project", &projectConfig)
-	}
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
