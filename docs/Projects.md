@@ -14,3 +14,5 @@ Compilado de projetos inspiradores para o Hey-Gen:
 * https://github.com/nishanths/license
 * https://github.com/arshad/license-generator
 * https://github.com/nikoksr/proji
+* https://github.com/create-go-app/cli
+* https://github.com/spf13/cobra
