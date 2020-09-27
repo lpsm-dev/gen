@@ -1,0 +1,20 @@
+language: go
+
+go_import_path: github.com/lpmatos/gen
+
+go:
+  - master
+
+before_install:
+  - go get -v golang.org/x/lint/golint
+  - go get -v github.com/client9/misspell/cmd/misspell
+
+install:
+  - make install
+
+script:
+  - make lint
+  - make misspell
+
+notifications:
+  email: luccapsm@gmail.com

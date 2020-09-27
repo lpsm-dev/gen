@@ -14,7 +14,6 @@ Please make sure your MR is ready to be merged !
 
 <!-- Briefly describe -->
 
-
 ## Checklist
 
 - [ ] MR targeting `master` branch.
