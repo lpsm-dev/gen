@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen)
+[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/lpmatos/gen/blob/master/LICENSE)
 
 ## Documentation
 
