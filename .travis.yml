@@ -10,10 +10,10 @@ before_install:
   - go get -v github.com/client9/misspell/cmd/misspell
 
 install:
-  - make install
+  - make ginstall
 
 script:
-  - make lint
+  - make glint
   - make misspell
 
 notifications:

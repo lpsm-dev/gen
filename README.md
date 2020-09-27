@@ -1,5 +1,12 @@
 [![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen)
 
+## Documentation
+
+* [commands](./docs/Commands.md)
+* [projects](./docs/Projects.md)
+* [questions](./docs/Questions.md)
+* [technologys](./docs/Technologys.md)
+
 ## ➤ How to contribute
 
 >
@@ -22,13 +29,6 @@ You must send the project to your GitHub after the modifications
 > 2. git commit -m "Added - Fixing somethings"
 > 3. git push origin master
 >
-
-## To-Do
-
-* [commands](./docs/Commands.md)
-* [projects](./docs/Projects.md)
-* [questions](./docs/Questions.md)
-* [technologys](./docs/Technologys.md)
 
 ## ➤ Show your support
 

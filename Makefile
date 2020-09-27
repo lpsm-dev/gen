@@ -9,8 +9,8 @@ GOOS       := $(shell go env GOOS)
 GOARCH     := $(shell go env GOARCH)
 
 # NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
-# BUILD_FLAG := -race
-GOBUILD    := CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} go build $(BUILD_FLAG)
+BUILD_FLAG := -race
+GOBUILD    := CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} go build $(BUILD_FLAG)
 
 BINDIR      := $(CURDIR)/bin
 BINNAME     ?= gen
