@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen)
+
 ## ➤ How to contribute
 
 >
