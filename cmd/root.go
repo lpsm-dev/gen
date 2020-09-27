@@ -1,4 +1,6 @@
 /*
+Package cmd includes all of the gen CLI commands.
+
 Copyright © 2020 NAME HERE luccpsm@gmail.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
