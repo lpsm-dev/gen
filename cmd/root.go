@@ -1,5 +1,7 @@
 /*
-Copyright © 2020 NAME HERE luccpsm@gmail.com
+Package cmd includes all of the gen CLI commands.
+
+Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,6 +26,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// completionCmd is a struct to represent the root command in cobra.
 type rootCmd struct {
 	cmd *cobra.Command
 }
@@ -36,7 +39,7 @@ func newRootCmd() *rootCmd {
 		Long:  constants.RootHelpMessage,
 	}
 	cmd.AddCommand(
-		newCompletionCommand().cmd,
+		newCompletionCmd().cmd,
 	)
 	return &rootCmd{cmd: cmd}
 }

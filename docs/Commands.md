@@ -6,7 +6,7 @@ Ideais para os subcomandos do CLI:
 
 * gen readme
   * -f --file
-  * -t --template 
+  * -t --template
 * gen gig
   * gen gig autogen
     * -f --file
@@ -17,6 +17,7 @@ Ideais para os subcomandos do CLI:
 * gen sonar
   * -d --default
 * gen ci
+* gen completion
 * gen project
 * gen structure
 * gen license
