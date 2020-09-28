@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/alecthomas/gometalinter v3.0.0+incompatible // indirect
 	github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d // indirect
+	github.com/c-bata/go-prompt v0.2.5
 	github.com/client9/misspell v0.3.4 // indirect
 	github.com/common-nighthawk/go-figure v0.0.0-20200609044655-c4b36f998cf2
 	github.com/create-go-app/cli v1.6.2

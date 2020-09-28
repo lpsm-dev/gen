@@ -21,7 +21,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/internal/constants"
 	"github.com/spf13/cobra"
 )
@@ -39,20 +38,10 @@ func newRootCmd() *rootCmd {
 		Long:  constants.RootHelpMessage,
 	}
 	cmd.AddCommand(
-		newCompletionCmd().cmd,
+		createCompletionCmd().cmd,
+		createVersionCmd().cmd,
 	)
 	return &rootCmd{cmd: cmd}
-}
-
-func init() {
-	title := func() {
-		figure.NewColorFigure("Gen", "", "yellow", false).Print()
-		endline := func() {
-			fmt.Println("")
-		}
-		endline()
-	}
-	title()
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

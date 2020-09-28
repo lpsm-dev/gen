@@ -1,5 +1,7 @@
 /*
-Copyright © 2020 NAME HERE luccpsm@gmail.com
+Package main includes call for gen CLI.
+
+Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,8 +18,22 @@ limitations under the License.
 package main
 
 import (
+	"fmt"
+
+	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/cmd"
 )
+
+func init() {
+	title := func() {
+		figure.NewColorFigure("Gen", "", "yellow", false).Print()
+		endline := func() {
+			fmt.Println("")
+		}
+		endline()
+	}
+	title()
+}
 
 func main() {
 	cmd.Execute()

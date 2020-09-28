@@ -25,13 +25,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// completionCmd is a struct to represent the completition command in cobra.
-type completionCmd struct {
-	cmd *cobra.Command
-}
+var defaultShell = "bash"
 
-// newCompletionCmd represents the `completion` command.
-func newCompletionCmd() *completionCmd {
+// completionCmd is a struct to represent a cobra cli command.
+type completionCmd struct{ cmd *cobra.Command }
+
+// createCompletionCmd represents the `completion` command.
+func createCompletionCmd() *completionCmd {
 	cmd := &cobra.Command{
 		Use:                   "completion <shell>",
 		Short:                 "Load shell completions",
@@ -41,7 +41,7 @@ func newCompletionCmd() *completionCmd {
 		ValidArgs:             []string{"bash", "zsh", "fish", "powershell"},
 		Args: func(cmd *cobra.Command, args []string) error {
 			if cobra.ExactArgs(1)(cmd, args) != nil || cobra.OnlyValidArgs(cmd, args) != nil {
-				return fmt.Errorf("only %v arguments are allowed", cmd.ValidArgs)
+				return fmt.Errorf("Only %v arguments are allowed", cmd.ValidArgs)
 			}
 			return nil
 		},
