@@ -11,12 +11,12 @@ import (
 // These variables are populated via the Go ldflags.
 // This will be filled in by the compiler.
 var (
-	UTCBuildTime  string = "unknown-utc-build-time"
-	ClientVersion string = "unknown-cli-version"
-	GoVersion     string = "unknown-go-version"
-	GitBranch     string = "unknown-git-branch"
-	GitTag        string = "unknown-git-tag"
-	GitHash       string = "unknown-git-hash"
+	UTCBuildTime  = "unknown-utc-build-time"
+	ClientVersion = "unknown-cli-version"
+	GoVersion     = "unknown-go-version"
+	GitBranch     = "unknown-git-branch"
+	GitTag        = "unknown-git-tag"
+	GitHash       = "unknown-git-hash"
 )
 
 // GetDisplay function - parse current version and return a formatted string.
