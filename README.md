@@ -2,6 +2,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/33544dd8a7f7408a93220542445f429e)](https://www.codacy.com/manual/lpmatos/gen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lpmatos/gen&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/lpmatos/gen/blob/master/LICENSE)
 [![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](http://pkg.go.dev/github.com/lpmatos/gen)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lpmatos/gen)](https://goreportcard.com/report/github.com/lpmatos/gen)
 
 ## ➤ Menu
 
