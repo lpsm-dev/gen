@@ -20,9 +20,11 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/lpmatos/gen/util"
+	"github.com/lpmatos/gen/internal/version"
 	"github.com/spf13/cobra"
 )
+
+var detail = false
 
 // versionCmd is a struct to represent a cobra cli command.
 type versionCmd struct{ cmd *cobra.Command }
@@ -34,12 +36,19 @@ func createVersionCmd() *versionCmd {
 		Aliases: []string{"v"},
 		Short:   "Print the version number of Gen CLI",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(util.ClientVersion)
-			if detail {
-				fmt.Println("Version details")
-			}
+			showVersion(detail)
 		},
 	}
 	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "detail current version")
 	return &versionCmd{cmd: cmd}
+}
+
+// Local function - check detail flag and show the pretty details if enabled (`true`).
+func showVersion(detail bool) {
+	if detail {
+		fmt.Printf("%s\n\n", version.GetDisplay())
+		version.GetPrettyDetails()
+	} else {
+		fmt.Printf("%s\n", version.GetDisplay())
+	}
 }
