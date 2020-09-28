@@ -36,19 +36,14 @@ func createVersionCmd() *versionCmd {
 		Aliases: []string{"v"},
 		Short:   "Print the version number of Gen CLI",
 		Run: func(cmd *cobra.Command, args []string) {
-			showVersion(detail)
+			if detail {
+				fmt.Printf("%s\n\n", version.GetDisplay())
+				version.GetPrettyDetails()
+			} else {
+				fmt.Printf("%s\n", version.GetDisplay())
+			}
 		},
 	}
 	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "detail current version")
 	return &versionCmd{cmd: cmd}
-}
-
-// Local function - check detail flag and show the pretty details if enabled (`true`).
-func showVersion(detail bool) {
-	if detail {
-		fmt.Printf("%s\n\n", version.GetDisplay())
-		version.GetPrettyDetails()
-	} else {
-		fmt.Printf("%s\n", version.GetDisplay())
-	}
 }
