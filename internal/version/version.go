@@ -11,17 +11,17 @@ import (
 // These variables are populated via the Go ldflags.
 // This will be filled in by the compiler.
 var (
-	UTCBuildTime  string = "unknown-utc-build-time"
-	ClientVersion string = "unknown-cli-version"
-	GoVersion     string = "unknown-go-version"
-	GitBranch     string = "unknown-git-branch"
-	GitTag        string = "unknown-git-tag"
-	GitHash       string = "unknown-git-hash"
+	_UTCBuildTime  string = "unknown-utc-build-time"
+	_ClientVersion string = "unknown-cli-version"
+	_GoVersion     string = "unknown-go-version"
+	_GitBranch     string = "unknown-git-branch"
+	_GitTag        string = "unknown-git-tag"
+	_GitHash       string = "unknown-git-hash"
 )
 
 // GetDisplay function - parse current version and return a formatted string.
 func GetDisplay() string {
-	return fmt.Sprintf("CLI Version - %s", ClientVersion)
+	return fmt.Sprintf("CLI Version - %s", _ClientVersion)
 }
 
 // GetPrettyDetails function - create a pretty table and parse this table with current version details.
@@ -30,10 +30,10 @@ func GetPrettyDetails() {
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Info", "Content"})
 	t.AppendRows([]table.Row{
-		{"UTC Build Time", UTCBuildTime},
-		{"Go Version", GoVersion},
-		{"Git Branch", GitBranch},
-		{"Git Hash", GitHash},
+		{"UTC Build Time", _UTCBuildTime},
+		{"Go Version", _GoVersion},
+		{"Git Branch", _GitBranch},
+		{"Git Hash", _GitHash},
 	})
 	t.SetStyle(table.StyleColoredBright)
 	t.Render()
