@@ -4,7 +4,3 @@
 gitlab:
   url:
   token:
-
-# GitHub config.
-github:
-  token:

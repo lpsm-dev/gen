@@ -24,37 +24,47 @@ LDFLAGS += -X main.commit=${COMMIT}
 LDFLAGS += -X main.builtAt=${BUILT_AT}
 LDFLAGS += -X main.builtBy=${USER}
 LDFLAGS += -X main.builtOn=${BUILT_ON}
-LDFLAGS += -X "github.com/lpmatos/gen/utils.ClientVersion=$(shell cat VERSION)"
-LDFLAGS += -X "github.com/lpmatos/gen/utils.GoVersion=$(shell go version)"
-LDFLAGS += -X "github.com/lpmatos/gen/utils.UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
-LDFLAGS += -X "github.com/lpmatos/gen/utils.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
-LDFLAGS += -X "github.com/lpmatos/gen/utils.GitTag=$(shell git describe --tags)"
-LDFLAGS += -X "github.com/lpmatos/gen/utils.GitHash=$(shell git rev-parse HEAD)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.ClientVersion=$(shell cat VERSION)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GoVersion=$(shell go version)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitTag=$(shell git describe --tags)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitHash=$(shell git rev-parse HEAD)"
+
+ifeq ($(OS), Windows_NT)
+	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
+else
+	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
+endif
 
 # GoLang shortcuts.
-.PHONY: gbuild ginstall glint gdeps gclean
 
 # Install all the build and lint dependencies
+.PHONY: gsetup
 gsetup:
 	@echo "==> Setup..."
 	go mod download
 	go generate -v ./...
 	@echo ""
 
+.PHONY: gbuild
 gbuild: 
 	@echo "==> Building..."
 	$(GOBUILD) -o $(BINDIR)/$(BINNAME) -ldflags '$(LDFLAGS)' main.go
 	@echo ""
 
+.PHONY: ginstall
 ginstall:
 	@echo "==> Installing..."
 	go install -x ${SRC}
 	@echo ""
 
+.PHONY: glint
 glint:
 	@echo "==> Running lint..."
 	golint -set_exit_status ./...
 
+.PHONY: gdeps
 gdeps:
 	@echo "===> Tidy Dependencies..."
 	go mod tidy && go mod vendor
@@ -75,6 +85,7 @@ pack: build_linux build_darwin
 	rm $(BINDIR)/$(BINNAME)_linux_amd64 
 	rm $(BINDIR)/$(BINNAME)_darwin_amd64
 
+.PHONY: misspell
 misspell:
 	@# misspell - Correct commonly misspelled English words in source files
 	@#    go get -u github.com/client9/misspell/cmd/misspell
@@ -82,6 +93,7 @@ misspell:
 	find . -name '*.go' -not -path './vendor/*' -not -path './_repos/*' | xargs misspell -error
 	@echo ""
 
+.PHONY: gclean
 gclean:
 	@echo "==> Cleaning..."
 	go clean -x -i ${SRC}
@@ -91,11 +103,6 @@ gclean:
 	@echo ""
 
 # Docker/Docker-Compose shortcuts.
-ifeq ($(OS), Windows_NT)
-	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
-else
-	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
-endif
 
 # Docker shortcuts
 .PHONY: ds

@@ -18,3 +18,5 @@ Compilado de projetos inspiradores para o Hey-Gen:
 * https://github.com/spf13/cobra
 * https://go.dev/about
 * https://pkg.go.dev/github.com/lpmatos/gen
+* https://github.com/c-bata/go-prompt
+* https://github.com/manifoldco/promptui

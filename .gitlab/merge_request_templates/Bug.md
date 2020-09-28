@@ -29,3 +29,11 @@ Please make sure your MR is ready to be merged !
 ## Changes
 
 * Describe changes here
+
+## Screenshots
+
+<!-- If applicable, add screenshots to help explain your problem. -->
+
+## Additional context
+
+<!-- Add any other context about the problem here. -->

@@ -1,5 +1,5 @@
 /*
-Package cmd includes all of the gen CLI commands.
+Package cmd includes all commands of gen CLI.
 
 Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
@@ -34,14 +34,24 @@ type rootCmd struct {
 // rootCmd represents the base command when called without any subcommands.
 func newRootCmd() *rootCmd {
 	cmd := &cobra.Command{
-		Use:   "gen [sub]",
+		Use:   "gen",
 		Short: "A powerful CLI that helps your project startup",
 		Long:  constants.RootHelpMessage,
 	}
 	cmd.AddCommand(
-		newCompletionCmd().cmd,
+		createCompletionCmd(),
+		createVersionCmd(),
 	)
 	return &rootCmd{cmd: cmd}
+}
+
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	if err := newRootCmd().cmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
 
 func init() {
@@ -53,13 +63,4 @@ func init() {
 		endline()
 	}
 	title()
-}
-
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
-	if err := newRootCmd().cmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
 }

@@ -10,7 +10,7 @@ A CLI tool that automate your project startup:
 `
 
 // CompletionHelpMessage - return the long description of completion command.
-const CompletionHelpMessage = `To load completions:
+const CompletionHelpMessage = `To load completion for:
 
 Bash:
 $ source <(gen completion bash)
