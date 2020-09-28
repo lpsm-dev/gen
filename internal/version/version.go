@@ -11,12 +11,12 @@ import (
 // These variables are populated via the Go ldflags.
 // This will be filled in by the compiler.
 var (
-	UTCBuildTime  = "unknown-utc-build-time"
-	ClientVersion = "unknown-cli-version"
-	GoVersion     = "unknown-go-version"
-	GitBranch     = "unknown-git-branch"
-	GitTag        = "unknown-git-tag"
-	GitHash       = "unknown-git-hash"
+	UTCBuildTime  string = "unknown-utc-build-time"
+	ClientVersion string = "unknown-cli-version"
+	GoVersion     string = "unknown-go-version"
+	GitBranch     string = "unknown-git-branch"
+	GitTag        string = "unknown-git-tag"
+	GitHash       string = "unknown-git-hash"
 )
 
 // GetDisplay function - parse current version and return a formatted string.
@@ -37,4 +37,14 @@ func GetPrettyDetails() {
 	})
 	t.SetStyle(table.StyleColoredBright)
 	t.Render()
+}
+
+// ShowVersion function - check detail flag and show the pretty details if enabled (`true`).
+func ShowVersion(detail bool) {
+	if detail {
+		fmt.Printf("%s\n\n", GetDisplay())
+		GetPrettyDetails()
+	} else {
+		fmt.Printf("%s\n", GetDisplay())
+	}
 }

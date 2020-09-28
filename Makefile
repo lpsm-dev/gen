@@ -24,12 +24,12 @@ LDFLAGS += -X main.commit=${COMMIT}
 LDFLAGS += -X main.builtAt=${BUILT_AT}
 LDFLAGS += -X main.builtBy=${USER}
 LDFLAGS += -X main.builtOn=${BUILT_ON}
-LDFLAGS += -X "github.com/lpmatos/gen/util.ClientVersion=$(shell cat VERSION)"
-LDFLAGS += -X "github.com/lpmatos/gen/util.GoVersion=$(shell go version)"
-LDFLAGS += -X "github.com/lpmatos/gen/util.UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
-LDFLAGS += -X "github.com/lpmatos/gen/util.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
-LDFLAGS += -X "github.com/lpmatos/gen/util.GitTag=$(shell git describe --tags)"
-LDFLAGS += -X "github.com/lpmatos/gen/util.GitHash=$(shell git rev-parse HEAD)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.ClientVersion=$(shell cat VERSION)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GoVersion=$(shell go version)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitTag=$(shell git describe --tags)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitHash=$(shell git rev-parse HEAD)"
 
 ifeq ($(OS), Windows_NT)
 	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)

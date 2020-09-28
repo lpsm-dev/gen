@@ -18,8 +18,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/lpmatos/gen/internal/version"
 	"github.com/spf13/cobra"
 )
@@ -36,12 +34,7 @@ func createVersionCmd() *versionCmd {
 		Aliases: []string{"v"},
 		Short:   "Print the version number of Gen CLI",
 		Run: func(cmd *cobra.Command, args []string) {
-			if detail {
-				fmt.Printf("%s\n\n", version.GetDisplay())
-				version.GetPrettyDetails()
-			} else {
-				fmt.Printf("%s\n", version.GetDisplay())
-			}
+			version.ShowVersion(detail)
 		},
 	}
 	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "detail current version")
