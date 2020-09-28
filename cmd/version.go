@@ -1,5 +1,5 @@
 /*
-Package cmd includes all of the gen CLI commands.
+Package cmd includes all commands of gen CLI.
 
 Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
@@ -22,21 +22,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// detauk flag for show more info about the current version.
 var detail = false
 
-// versionCmd is a struct to represent a cobra cli command.
-type versionCmd struct{ cmd *cobra.Command }
-
-// createVersionCmd represents the `version` command.
-func createVersionCmd() *versionCmd {
+// Local function that represents the `version` command.
+func createVersionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "version",
 		Aliases: []string{"v"},
-		Short:   "Print the version number of Gen CLI",
+		Short:   "Show the current version of Gen CLI",
 		Run: func(cmd *cobra.Command, args []string) {
 			version.ShowVersion(detail)
 		},
 	}
-	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "detail current version")
-	return &versionCmd{cmd: cmd}
+	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "show more details of the current version")
+	return cmd
 }

@@ -51,20 +51,19 @@ package-lock.json
 
 # End of https://www.toptal.com/developers/gitignore/api/go
 
-bin/
-vendor/
-static/
 *.lock
 *.vscode
 *.idea
 *.txt
 *.tar.gz
 
-# VS Code
-.vscode
-
-# IntelliJ
-.idea
+# Folders
+.vscode/
+.idea/
+vendor/
+static/
+bin/
+dist/
 
 # macOS
 .DS_Store

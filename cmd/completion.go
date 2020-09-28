@@ -1,5 +1,5 @@
 /*
-Package cmd includes all of the gen CLI commands.
+Package cmd includes all commands of gen CLI.
 
 Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
@@ -25,13 +25,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var defaultShell = "bash"
-
-// completionCmd is a struct to represent a cobra cli command.
-type completionCmd struct{ cmd *cobra.Command }
-
-// createCompletionCmd represents the `completion` command.
-func createCompletionCmd() *completionCmd {
+// Local function that represents the `completion` command.
+func createCompletionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:                   "completion <shell>",
 		Short:                 "Load shell completions",
@@ -60,5 +55,5 @@ func createCompletionCmd() *completionCmd {
 			return err
 		},
 	}
-	return &completionCmd{cmd: cmd}
+	return cmd
 }

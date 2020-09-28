@@ -1,5 +1,5 @@
 /*
-Package cmd includes all of the gen CLI commands.
+Package cmd includes all commands of gen CLI.
 
 Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 
@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/internal/constants"
 	"github.com/spf13/cobra"
 )
@@ -33,13 +34,13 @@ type rootCmd struct {
 // rootCmd represents the base command when called without any subcommands.
 func newRootCmd() *rootCmd {
 	cmd := &cobra.Command{
-		Use:   "gen [sub]",
+		Use:   "gen",
 		Short: "A powerful CLI that helps your project startup",
 		Long:  constants.RootHelpMessage,
 	}
 	cmd.AddCommand(
-		createCompletionCmd().cmd,
-		createVersionCmd().cmd,
+		createCompletionCmd(),
+		createVersionCmd(),
 	)
 	return &rootCmd{cmd: cmd}
 }
@@ -51,4 +52,15 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+func init() {
+	title := func() {
+		figure.NewColorFigure("Gen", "", "yellow", false).Print()
+		endline := func() {
+			fmt.Println("")
+		}
+		endline()
+	}
+	title()
 }
