@@ -16,3 +16,5 @@ Compilado de projetos inspiradores para o Hey-Gen:
 * https://github.com/nikoksr/proji
 * https://github.com/create-go-app/cli
 * https://github.com/spf13/cobra
+* https://go.dev/about
+* https://pkg.go.dev/github.com/lpmatos/gen
