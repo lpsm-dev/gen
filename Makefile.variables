@@ -15,20 +15,14 @@ GOBUILD    := CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} go build $(BUILD_FLAG)
 BINDIR      := $(CURDIR)/bin
 BINNAME     ?= gen
 
-COMMIT   := $(shell git rev-parse --short HEAD)
-BUILT_AT := $(shell date +%FT%T%z)
-BUILT_ON := $(shell hostname)
+CLIENT_VERSION=$(shell cat VERSION)
+GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
+GO_VERSION=$(shell go version)
 
 LDFLAGS := -w -s
-LDFLAGS += -X main.commit=${COMMIT}
-LDFLAGS += -X main.builtAt=${BUILT_AT}
-LDFLAGS += -X main.builtBy=${USER}
-LDFLAGS += -X main.builtOn=${BUILT_ON}
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version._UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version._ClientVersion=$(shell cat VERSION)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version._GoVersion=$(shell go version)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version._GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version._GitHash=$(shell git rev-parse HEAD)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$CLIENT_VERSION"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitBranch=$GIT_BRANCH"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.goVersion=$GO_VERSION"
 
 ifeq ($(OS), Windows_NT)
 	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)

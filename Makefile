@@ -1,3 +1,7 @@
+export CLIENT_VERSION=$(CLIENT_VERSION)
+export GO_VERSION=$(GO_VERSION)
+export GIT_BRANCH=$(GIT_BRANCH)
+
 include Makefile.variables
 
 .PHONY: help
@@ -54,6 +58,11 @@ misspell:
 	@echo "==> Runnig misspell ..."
 	find . -name '*.go' -not -path './vendor/*' -not -path './_repos/*' | xargs misspell -error
 	@echo ""
+
+# Running goreleaser
+.PHONY: snapshot
+snapshot:
+	goreleaser --snapshot --rm-dist
 
 # Clean all golang files and packages generated in some build process.
 .PHONY: gclean
