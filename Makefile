@@ -1,90 +1,54 @@
-GOPATH ?= $(shell go env GOPATH)
+SHELL := /bin/bash
 
-# Ensure GOPATH is set before running build process.
-ifeq "$(GOPATH)" ""
-  $(error Please set the environment variable GOPATH before running `make`)
-endif
+include Makefile.variables
 
-GOOS       := $(shell go env GOOS)
-GOARCH     := $(shell go env GOARCH)
-
-# NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
-BUILD_FLAG := -race
-GOBUILD    := CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} go build $(BUILD_FLAG)
-
-BINDIR      := $(CURDIR)/bin
-BINNAME     ?= gen
-
-COMMIT   := $(shell git rev-parse --short HEAD)
-BUILT_AT := $(shell date +%FT%T%z)
-BUILT_ON := $(shell hostname)
-
-LDFLAGS := -w -s
-LDFLAGS += -X main.commit=${COMMIT}
-LDFLAGS += -X main.builtAt=${BUILT_AT}
-LDFLAGS += -X main.builtBy=${USER}
-LDFLAGS += -X main.builtOn=${BUILT_ON}
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.ClientVersion=$(shell cat VERSION)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GoVersion=$(shell go version)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.UTCBuildTime=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitTag=$(shell git describe --tags)"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.GitHash=$(shell git rev-parse HEAD)"
-
-ifeq ($(OS), Windows_NT)
-	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
-else
-	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
-endif
+.PHONY: help
+help:
+	@echo 'Management commands for cicdtest:'
+	@echo
+	@echo 'Usage:'
+	@echo '  ## Golang Commands'
+	@echo '    make setup           	Install all the build and lint dependencies.'
+	@echo '    make build         		Build Gen binary.'
+	@echo '    make install         	Install Gen CLI.'
+	@echo '    make lint              	Lint go Files.'
+	@echo '    make misspell         	Running misspell command in Go files.'
+	@echo '    make gclean       	  	Clean all golang files and packages generated in some build process.'
+	@echo
+	@echo '  ## Docker/Docker Compose Commands'
+	@echo '    make setup           	Configures Minishfit/Docker directory mounts.'
+	@echo
 
 # GoLang shortcuts.
-
-# Install all the build and lint dependencies
-.PHONY: gsetup
-gsetup:
+# Install all the build and lint dependencies.
+.PHONY: setup
+setup:
 	@echo "==> Setup..."
 	go mod download
 	go generate -v ./...
 	@echo ""
 
-.PHONY: gbuild
-gbuild: 
+# Build Gen binary.
+.PHONY: build
+build: 
 	@echo "==> Building..."
 	$(GOBUILD) -o $(BINDIR)/$(BINNAME) -ldflags '$(LDFLAGS)' main.go
 	@echo ""
 
-.PHONY: ginstall
-ginstall:
+# Install Gen CLI.
+.PHONY: install
+install:
 	@echo "==> Installing..."
 	go install -x ${SRC}
 	@echo ""
 
-.PHONY: glint
-glint:
+# Lint Go files.
+.PHONY: lint
+lint:
 	@echo "==> Running lint..."
 	golint -set_exit_status ./...
 
-.PHONY: gdeps
-gdeps:
-	@echo "===> Tidy Dependencies..."
-	go mod tidy && go mod vendor
-	@echo ""
-
-build_linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build $(BUILD_FLAG) -o $(BINDIR)/$(BINNAME)_linux_amd64 -ldflags '$(LDFLAGS)' main.go
-
-build_darwin:
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build $(BUILD_FLAG) -o $(BINDIR)/$(BINNAME)_darwin_amd64 -ldflags '$(LDFLAGS)' main.go
-
-pack: build_linux build_darwin
-	@echo "==> Packing ..."
-	@tar czvf $(BINNAME)-$(shell cat VERSION).linux-amd64.tar.gz $(BINDIR)/$(BINNAME)_linux_amd64 
-	@echo ""
-	@tar czvf $(BINNAME)-$(shell cat VERSION).darwin-amd64.tar.gz $(BINDIR)/$(BINNAME)_darwin_amd64
-	@echo ""
-	rm $(BINDIR)/$(BINNAME)_linux_amd64 
-	rm $(BINDIR)/$(BINNAME)_darwin_amd64
-
+# Running misspell command in Go files.
 .PHONY: misspell
 misspell:
 	@# misspell - Correct commonly misspelled English words in source files
@@ -93,17 +57,18 @@ misspell:
 	find . -name '*.go' -not -path './vendor/*' -not -path './_repos/*' | xargs misspell -error
 	@echo ""
 
+# Clean all golang files and packages generated in some build process.
 .PHONY: gclean
 gclean:
 	@echo "==> Cleaning..."
 	go clean -x -i ${SRC}
 	rm -rf ./bin/*
 	rm -rf ./vendor
+	rm -rf ./dist
 	rm -rf *.tar.gz
 	@echo ""
 
 # Docker/Docker-Compose shortcuts.
-
 # Docker shortcuts
 .PHONY: ds
 ds:
