@@ -1,5 +1,3 @@
-SHELL := /bin/bash
-
 include Makefile.variables
 
 .PHONY: help

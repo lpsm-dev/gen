@@ -15,7 +15,6 @@ var (
 	_ClientVersion = "unknown-cli-version"
 	_GoVersion     = "unknown-go-version"
 	_GitBranch     = "unknown-git-branch"
-	_GitTag        = "unknown-git-tag"
 	_GitHash       = "unknown-git-hash"
 )
 
@@ -26,17 +25,17 @@ func GetDisplay() string {
 
 // GetPrettyDetails function - create a pretty table and parse this table with current version details.
 func GetPrettyDetails() {
-	t := table.NewWriter()
-	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"Info", "Content"})
-	t.AppendRows([]table.Row{
+	versionTable := table.NewWriter()
+	versionTable.SetOutputMirror(os.Stdout)
+	versionTable.AppendHeader(table.Row{"Info", "Content"})
+	versionTable.AppendRows([]table.Row{
 		{"UTC Build Time", _UTCBuildTime},
 		{"Go Version", _GoVersion},
 		{"Git Branch", _GitBranch},
 		{"Git Hash", _GitHash},
 	})
-	t.SetStyle(table.StyleColoredBright)
-	t.Render()
+	versionTable.SetStyle(table.StyleColoredBright)
+	versionTable.Render()
 }
 
 // ShowVersion function - check detail flag and show the pretty details if enabled (`true`).
