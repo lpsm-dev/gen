@@ -15,7 +15,6 @@ var (
 	_ClientVersion = "unknown-cli-version"
 	_GoVersion     = "unknown-go-version"
 	_GitBranch     = "unknown-git-branch"
-	_GitTag        = "unknown-git-tag"
 	_GitHash       = "unknown-git-hash"
 )
 

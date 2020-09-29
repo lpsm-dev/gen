@@ -2,10 +2,6 @@ language: go
 
 go_import_path: github.com/lpmatos/gen
 
-branches:
-  only:
-    - master
-
 go:
   - master
 
