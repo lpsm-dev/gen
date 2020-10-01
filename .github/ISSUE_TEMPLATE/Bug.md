@@ -1,9 +1,10 @@
 ---
 name: Bug report
 about: Create a bug report to help us improve.
-title: ""
-labels: "bug"
-assignees: "lpmatos"
+title: ''
+labels: bug
+assignees: lpmatos
+
 ---
 
 # Required check list
