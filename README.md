@@ -1,8 +1,36 @@
-[![Build Status](https://travis-ci.com/lpmatos/gen.svg?branch=master)](https://travis-ci.com/lpmatos/gen)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/33544dd8a7f7408a93220542445f429e)](https://www.codacy.com/manual/lpmatos/gen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lpmatos/gen&amp;utm_campaign=Badge_Grade)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/lpmatos/gen/blob/master/LICENSE)
-[![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](http://pkg.go.dev/github.com/lpmatos/gen)
-[![Go Report Card](https://goreportcard.com/badge/github.com/lpmatos/gen)](https://goreportcard.com/report/github.com/lpmatos/gen)
+<p align="center">
+  <img alt="Gen Logo" src="https://github.com/lpmatos/gen/-/raw/master/assets/Logo.png" width="250px" float="center"/>
+</p>
+
+<h1 align="center">Welcome to Gen repository</h1>
+
+<p align="center">
+  <a href="https://travis-ci.com/lpmatos/gen">
+    <img alt="Build Status" src="https://travis-ci.com/lpmatos/gen.svg?branch=master">
+  </a>
+  <a href="https://www.codacy.com/manual/lpmatos/gen/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lpmatos/gen&amp;utm_campaign=Badge_Grade">
+    <img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/33544dd8a7f7408a93220542445f429e">
+  </a>
+  <a href="https://github.com/lpmatos/gen/blob/master/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
+  </a>
+  <a href="http://pkg.go.dev/github.com/lpmatos/gen">
+    <img alt="GoDoc" src="https://img.shields.io/badge/pkg.go.dev-doc-blue">
+  </a>
+  <a href="https://goreportcard.com/report/github.com/lpmatos/gen">
+    <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/lpmatos/gen">
+  </a>
+  <a href="https://github.com/lpmatos/gen">
+    <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lpmatos/gen">
+  </a>
+  <a href="https://github.com/lpmatos/gen/commits/master">
+    <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/lpmatos/gen">
+  </a>
+</p>
+
+>
+> Gen is a GoLang CLI that automate your project startup.
+>
 
 ## ➤ Menu
 
