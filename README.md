@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Gen Logo" src="https://github.com/lpmatos/gen/-/raw/master/assets/Logo.png" width="250px" float="center"/>
+</p>
+
 <h1 align="center">Welcome to Gen repository</h1>
 
 <p align="center">
@@ -15,9 +19,6 @@
   </a>
   <a href="https://goreportcard.com/report/github.com/lpmatos/gen">
     <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/lpmatos/gen">
-  </a>
-  <a href="https://github.com/lpmatos/gen/stargazers">
-    <img alt="GitHub Stars" src="https://img.shields.io/github/stars/lpmatos/gen?style=social">
   </a>
   <a href="https://github.com/lpmatos/gen">
     <img alt="Repository Size" src="https://img.shields.io/github/repo-size/lpmatos/gen">
