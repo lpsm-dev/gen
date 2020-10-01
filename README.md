@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Gen Logo" src="https://github.com/lpmatos/gen/-/raw/master/assets/Logo.png" width="250px" float="center"/>
+  <img alt="Gen Logo" src="https://github.com/lpmatos/gen/blob/master/assets/Logo.png" width="250px" float="center"/>
 </p>
 
 <h1 align="center">Welcome to Gen repository</h1>
