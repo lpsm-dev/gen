@@ -4,6 +4,10 @@
 [![GoDoc](https://img.shields.io/badge/pkg.go.dev-doc-blue)](http://pkg.go.dev/github.com/lpmatos/gen)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lpmatos/gen)](https://goreportcard.com/report/github.com/lpmatos/gen)
 
+>
+> Gen is a GoLang CLI that automate your project startup.
+>
+
 ## ➤ Menu
 
 <p align="left">

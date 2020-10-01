@@ -16,5 +16,9 @@ script:
   - make glint
   - make misspell
 
+branches:
+  only:
+  - master
+
 notifications:
   email: luccapsm@gmail.com

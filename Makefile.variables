@@ -1,16 +1,17 @@
-GOPATH ?= $(shell go env GOPATH)
-
-# Ensure GOPATH is set before running build process.
-ifeq "$(GOPATH)" ""
-  $(error Please set the environment variable GOPATH before running `make`)
-endif
-
-GOOS       := $(shell go env GOOS)
-GOARCH     := $(shell go env GOARCH)
-
-# NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
-BUILD_FLAG := -race
-GOBUILD    := CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} go build $(BUILD_FLAG)
+# Copyright 2020 The gen authors
+#
+#
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
 
 BINDIR      := $(CURDIR)/bin
 BINNAME     ?= gen
@@ -18,6 +19,21 @@ BINNAME     ?= gen
 CLIENT_VERSION=$(shell cat VERSION)
 GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 GO_VERSION=$(shell go version)
+
+GOPATH	?= $(shell go env GOPATH)
+
+# Ensure GOPATH is set before running build process.
+ifeq "$(GOPATH)" ""
+  $(error Please set the environment variable GOPATH before running `make`)
+endif
+
+GO 			:= go
+GOOS   	:= $(shell go env GOOS)
+GOARCH 	:= $(shell go env GOARCH)
+
+# NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
+BUILD_FLAG	:= -race
+GOBUILD    	:= CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} ${GO} build $(BUILD_FLAG)
 
 LDFLAGS := -w -s
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$CLIENT_VERSION"
