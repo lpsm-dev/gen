@@ -64,6 +64,41 @@ This will give access on your **local machine**.
 * Status
 * Readme
 
+## ➤ Development with Docker
+
+Steps to build the Docker Image.
+
+<details><summary>🐋 Build</summary>
+<p>
+
+Docker commands to build your image:
+
+```bash
+docker image build -t <IMAGE_NAME> -f <PATH_DOCKERFILE> <PATH_CONTEXT_DOCKERFILE>
+docker image build -t <IMAGE_NAME> . (This context)
+```
+</p>
+</details>
+
+<details><summary>🐋 Run</summary>
+<p>
+Docker commands to run a container with yout image:
+
+* **Linux** running:
+
+```bash
+docker container run -d -p <LOCAL_PORT:CONTAINER_PORT> <IMAGE_NAME> <COMMAND>
+docker container run -it --rm --name <CONTAINER_NAME> -p <LOCAL_PORT:CONTAINER_PORT> <IMAGE_NAME> <COMMAND>
+```
+
+* **Windows** running:
+
+```bash
+winpty docker.exe container run -it --rm <IMAGE_NAME> <COMMAND>
+```
+</p>
+</details>
+
 ## ➤ How to contribute
 
 >
