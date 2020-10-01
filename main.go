@@ -1,5 +1,5 @@
 /*
-Package main includes call for gen CLI.
+Package main includes call for Gen CLI.
 
 Copyright © 2020 Lucca Pessoa <luccpsm@gmail.com>
 

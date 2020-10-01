@@ -20,23 +20,33 @@ export GO_VERSION=$(GO_VERSION)
 export GIT_BRANCH=$(GIT_BRANCH)
 
 include Makefile.variables
+include Makefile.docker
 
 .PHONY: help
 help:
-	@echo 'Management commands for cicdtest:'
-	@echo
-	@echo 'Usage:'
-	@echo '  ## Golang Commands'
-	@echo '    make setup           	Install all the build and lint dependencies.'
-	@echo '    make build         		Build Gen binary.'
-	@echo '    make install         	Install Gen CLI.'
-	@echo '    make lint              	Lint go Files.'
-	@echo '    make misspell         	Running misspell command in Go files.'
-	@echo '    make gclean       	  	Clean all golang files and packages generated in some build process.'
-	@echo
-	@echo '  ## Docker/Docker Compose Commands'
-	@echo '    make setup           	Configures Minishfit/Docker directory mounts.'
-	@echo
+	@echo "Management commands for cicdtest:"
+	@echo ""
+	@echo "Usage:"
+	@echo ""
+	@echo "## Golang Commands"
+	@echo ""
+	@echo "make setup"
+	@echo "make build"
+	@echo "make install"
+	@echo "make lint"
+	@echo "make misspell"
+	@echo "make gclean"
+	@echo ""
+	@echo "## Docker/Docker Compose Commands"
+	@echo ""
+	@echo "make docker-stop"
+	@echo "make docker-remove"
+	@echo "make docker-volume-prune"
+	@echo "make docker-network-prune"
+	@echo "make docker-system-prune"
+	@echo "make clean"
+	@echo "make remove"
+	@echo ""
 
 # GoLang shortcuts.
 # Install all the build and lint dependencies.
@@ -88,66 +98,3 @@ gclean:
 	$(GO) clean -x -i ${SRC}
 	rm -rf ./bin/* ./vendor ./dist *.tar.gz
 	@echo ""
-
-# Docker/Docker-Compose shortcuts.
-# Docker shortcuts
-.PHONY: ds
-ds:
-	$(if $(strip $(DOCKER_CONTAINER_LIST)), docker stop $(DOCKER_CONTAINER_LIST))
-
-.PHONY: dv
-dv:
-	$(if $(strip $(DOCKER_CONTAINER_LIST)), docker rm $(DOCKER_CONTAINER_LIST))
-
-.PHONY: dvp
-dvp:
-	@-docker volume prune -f
-
-.PHONY: dnp
-dnp:
-	@-docker network prune -f
-
-.PHONY: dsp
-dsp:
-	@-docker system prune -af
-
-.PHONY: clean
-clean: ds dv dvp dnp
-	@echo "# --------------------------------------"
-	@echo "# Clean cleaning of docker environment"
-	@echo "# --------------------------------------"
-
-.PHONY: remove 
-remove: ds dv dvp dnp dsp
-	@echo "# --------------------------------------"
-	@echo "# Deep cleaning of docker environment"
-	@echo "# --------------------------------------"
-
-# Docker Compose shortcuts
-.PHONY: dcub
-dcub:
-	docker-compose up --build
-
-.PHONY: dcubd
-dcubd:
-	docker-compose up --build -d
-
-.PHONY: dcs
-dcs:
-	docker-compose down
-
-.PHONY: dcps
-dcps:
-	docker-compose ps
-
-.PHONY: run
-run: dcps dcs dcub
-ifneq ("$(wildcard $(./.env))","")
-    dcps dcs dcubd
-endif
-
-.PHONY: rund
-run: dcps dcs dcubd
-ifneq ("$(wildcard $(./.env))","")
-    dcps dcs dcubd
-endif

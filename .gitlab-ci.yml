@@ -1,4 +1,27 @@
-stages: [ "Test", "Build", "Scan", "Release", "Deploy", "Verify" ]
+
+# ==============================================================================
+# WORKFLOW
+# ==============================================================================
+
+workflow:
+  rules:
+    # If `$PIPELINE_DISABLE` is set, don't create a pipeline.
+    - if: '$PIPELINE_DISABLE == "true"'
+      when: never
+    # If `$FORCE_GITLAB_CI` is set, create a pipeline.
+    - if: '$FORCE_GITLAB_CI'
+    # If change any branch
+    - if: $CI_COMMIT_BRANCH
+
+# ==============================================================================
+# STAGES
+# ==============================================================================
+
+stages: [ "💥 Test", "📦 Build", "🚧 Scanning" ]
+
+# ==============================================================================
+# JOBS
+# ==============================================================================
 
 Debug:
   stage: .pre

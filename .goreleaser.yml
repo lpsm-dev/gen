@@ -115,10 +115,10 @@ archives:
       netbsd: NetBSD
       freebsd: FreeBSD
       dragonfly: DragonFlyBSD
-    # Additional files/template/globs you want to add to the archive.
     files:
       - LICENSE
       - README.md
+      
   - id: "gen_extended"
     builds: ['gen_extended_windows', 'gen_extended_linux']
     format: tar.gz
