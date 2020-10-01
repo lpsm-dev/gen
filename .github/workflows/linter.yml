@@ -2,9 +2,8 @@ name: Linter
 
 on:
   push:
-    branches:
-    - master
-
+    branches: [ master ]
+    
 jobs:
   linter:
     name: golangci-lint
