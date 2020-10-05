@@ -20,3 +20,4 @@ Compilado de projetos inspiradores para o Hey-Gen:
 * https://pkg.go.dev/github.com/lpmatos/gen
 * https://github.com/c-bata/go-prompt
 * https://github.com/manifoldco/promptui
+* https://github.com/AlecAivazis/survey

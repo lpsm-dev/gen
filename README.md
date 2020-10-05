@@ -1,10 +1,13 @@
 <p align="center">
-  <img alt="Gen Logo" src="https://github.com/lpmatos/gen/blob/master/assets/Logo.png" width="250px" float="center"/>
+  <img alt="Logo" src="https://github.com/lpmatos/gen/blob/master/assets/Logo.png" width="250px" float="center"/>
 </p>
 
 <h1 align="center">Welcome to Gen repository</h1>
 
 <p align="center">
+  <a href="https://github.com/lpmatos/gen/releases">
+    <img alt="Release" src="https://img.shields.io/github/tag/lpmatos/gen.svg?label=latest">
+  </a>
   <a href="https://travis-ci.com/lpmatos/gen">
     <img alt="Build Status" src="https://travis-ci.com/lpmatos/gen.svg?branch=master">
   </a>
@@ -29,7 +32,7 @@
 </p>
 
 >
-> Gen is a GoLang CLI that automate your project startup.
+> Gen is a GoLang CLI that automate your project startup
 >
 
 ## ➤ Menu
@@ -136,10 +139,16 @@ Distributed under the Apache License. See [LICENSE](LICENSE) for more informatio
 
 Hey!! If you like this project or if you find some bugs feel free to contact me in my channels:
 
+> 
 > * Email: luccapsm@gmail.com
 > * Website: https://github.com/lpmatos
 > * Github: [@lpmatos](https://github.com/lpmatos)
 > * LinkedIn: [@luccapessoa](https://www.linkedin.com/in/luccapessoa/)
+> 
+
+## ➤ Troubleshooting
+
+This is just a personal project created for study/demonstration purposes and to simplify my working life, it may or may not be a good fit for your project!
 
 ## ➤ Show your support
 

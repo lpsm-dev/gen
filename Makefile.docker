@@ -13,8 +13,10 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-# Docker/Docker-Compose shortcuts.
+#################################################
 # Docker shortcuts
+#################################################
+
 .PHONY: docker-stop
 docker-stop:
 	$(if $(strip $(DOCKER_CONTAINER_LIST)), docker stop $(DOCKER_CONTAINER_LIST))
@@ -47,7 +49,10 @@ remove: docker-stop docker-remove docker-volume-prune docker-network-prune docke
 	@echo "# Deep cleaning Docker Environment"
 	@echo "# --------------------------------------"
 
+#################################################
 # Docker Compose shortcuts
+#################################################
+
 .PHONY: compose-up
 compose-up:
 	docker-compose up --build

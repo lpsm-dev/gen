@@ -18,8 +18,8 @@ BINNAME     ?= gen
 
 CLIENT_VERSION=$(shell cat VERSION)
 GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
-GO_VERSION=$(shell go version)
 
+GO_VERSION=$(shell go version)
 GOPATH	?= $(shell go env GOPATH)
 
 # Ensure GOPATH is set before running build process.
@@ -33,12 +33,12 @@ GOARCH 	:= $(shell go env GOARCH)
 
 # NOTE: '-race' requires cgo; enable cgo by setting CGO_ENABLED=1
 BUILD_FLAG	:= -race
-GOBUILD    	:= CGO_ENABLED=1 GOOS=${GOOS} GOARCH=${GOARCH} ${GO} build $(BUILD_FLAG)
+GOBUILD    	:= CGO_ENABLED=1 GOOS=$(GOOS) GOARCH=$(GOARCH) $(GO) build $(BUILD_FLAG)
 
 LDFLAGS := -w -s
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$CLIENT_VERSION"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitBranch=$GIT_BRANCH"
-LDFLAGS += -X "github.com/lpmatos/gen/internal/version.goVersion=$GO_VERSION"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$(CLIENT_VERSION)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitBranch=$(GIT_BRANCH)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.goVersion=$(GO_VERSION)"
 
 ifeq ($(OS), Windows_NT)
 	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
