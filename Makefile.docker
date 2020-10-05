@@ -37,14 +37,14 @@ docker-network-prune:
 docker-system-prune:
 	@-docker system prune -af
 
-.PHONY: clean
-clean: docker-stop docker-remove docker-volume-prune docker-network-prune
+.PHONY: docker-clean
+docker-clean: docker-stop docker-remove docker-volume-prune docker-network-prune
 	@echo "# --------------------------------------"
 	@echo "# Cleaning Docker Environment"
 	@echo "# --------------------------------------"
 
-.PHONY: remove 
-remove: docker-stop docker-remove docker-volume-prune docker-network-prune docker-system-prune
+.PHONY: docker-deep-clean 
+docker-deep-clean: docker-stop docker-remove docker-volume-prune docker-network-prune docker-system-prune
 	@echo "# --------------------------------------"
 	@echo "# Deep cleaning Docker Environment"
 	@echo "# --------------------------------------"
@@ -69,14 +69,14 @@ compose-down:
 compose-ps:
 	docker-compose ps
 
-.PHONY: run
-run: compose-ps compose-down compose-up
+.PHONY: compose-run
+compose-run: compose-ps compose-down compose-up
 ifneq ("$(wildcard $(./.env))","")
   compose-ps compose-down compose-up
 endif
 
-.PHONY: run-background
-run-background: compose-ps compose-down compose-up-background
+.PHONY: compose-run-background
+compose-run-background: compose-ps compose-down compose-up-background
 ifneq ("$(wildcard $(./.env))","")
   compose-ps compose-down compose-up-background
 endif

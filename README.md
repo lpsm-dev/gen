@@ -32,7 +32,7 @@
 </p>
 
 >
-> Gen is a GoLang CLI that automate your project startup
+> Gen is a GoLang CLI tool that automate your project startup
 >
 
 ## ➤ Menu
@@ -52,20 +52,14 @@ If you want use this repository you need to make a **git clone**:
 
 This will give access on your **local machine**.
 
-## Documentation
+## Description 
 
-* [Commands](./docs/Commands.md)
-* [Projects](./docs/Projects.md)
-* [Questions](./docs/Questions.md)
-* [Technologys](./docs/Technologys.md)
+#### Features
 
-## Features
-
-* Project
-* Gitignore
-* License
-* Status
-* Readme
+* Create README.
+* Create project structure.
+* Check project structure.
+* Automate bash completion. 
 
 ## ➤ Development with Docker
 
@@ -101,6 +95,13 @@ winpty docker.exe container run -it --rm <IMAGE_NAME> <COMMAND>
 ```
 </p>
 </details>
+
+## Documentation
+
+* [Commands](./docs/Commands.md)
+* [Projects](./docs/Projects.md)
+* [Questions](./docs/Questions.md)
+* [Technologys](./docs/Technologys.md)
 
 ## ➤ How to contribute
 

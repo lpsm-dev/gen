@@ -6,7 +6,7 @@ Please make sure your MR is ready to be merged !
 
 ## What problem does this MR solve?
 
-(What’s the problem that this change solves? Why is it worth solving?)
+(What's the problem that this change solves? Why is it worth solving?)
 
 ## Checklist
 

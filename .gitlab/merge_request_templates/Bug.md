@@ -1,15 +1,33 @@
 Please make sure your MR is ready to be merged !
 
-## What is current bug behavior?
+## Required check list
 
-<!-- Briefly describe -->
+- [x] I'm gonna mark the checkboxes like this.
+- [ ] I didn't find in the Gen CLI repository's issues section similar bug.
+- [ ] I understand, that the Gen CLI is Open Source and not-for-profit product.
+- [ ] This is not about third-party project, framework, package or technology.
+- [ ] MR targeting `master` branch.
 
-# Steps to reproduce the behavior
+## Pipeline check list
 
-1. Go to ...
-2. Click on ...
-3. ...
-4. See error
+- [ ] MR has a green pipeline.
+- [ ] Has a green pipeline running against latest commit.
+
+## My environment
+
+- OS (`uname -a`):
+- Golang (`go version`):
+- Gen CLI (`gen -v`):
+
+## Describe the bug
+
+<!-- A clear and concise description of what the bug is. -->
+
+## Steps to reproduce the behavior
+
+1. Go to 
+2. Click on 
+3. See error
 
 ## Expected behavior
 

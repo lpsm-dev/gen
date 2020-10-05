@@ -13,11 +13,18 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
+#################################################
+# Variables
+#################################################
+
 BINDIR      := $(CURDIR)/bin
 BINNAME     ?= gen
-
 CLIENT_VERSION=$(shell cat VERSION)
 GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
+
+#################################################
+# Go variables
+#################################################
 
 GO_VERSION=$(shell go version)
 GOPATH	?= $(shell go env GOPATH)
@@ -39,6 +46,10 @@ LDFLAGS := -w -s
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$(CLIENT_VERSION)"
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitBranch=$(GIT_BRANCH)"
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.goVersion=$(GO_VERSION)"
+
+#################################################
+# Docker variables
+#################################################
 
 ifeq ($(OS), Windows_NT)
 	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)

@@ -19,8 +19,16 @@ export CLIENT_VERSION=$(CLIENT_VERSION)
 export GO_VERSION=$(GO_VERSION)
 export GIT_BRANCH=$(GIT_BRANCH)
 
+#################################################
+# Includes
+#################################################
+
 include Makefile.variables
 include Makefile.docker
+
+#################################################
+# Helper
+#################################################
 
 .PHONY: help
 help:
@@ -28,28 +36,39 @@ help:
 	@echo ""
 	@echo "Usage:"
 	@echo ""
-	@echo "## Golang Commands"
+	@echo "** Golang Commands **"
 	@echo ""
 	@echo "make setup"
 	@echo "make build"
 	@echo "make install"
 	@echo "make lint"
 	@echo "make misspell"
-	@echo "make gclean"
+	@echo "make clean"
 	@echo ""
-	@echo "## Docker/Docker Compose Commands"
+	@echo "** Docker Commands **"
 	@echo ""
 	@echo "make docker-stop"
 	@echo "make docker-remove"
 	@echo "make docker-volume-prune"
 	@echo "make docker-network-prune"
 	@echo "make docker-system-prune"
-	@echo "make clean"
-	@echo "make remove"
+	@echo "make docker-clean"
+	@echo "make docker-deep-clean"
+	@echo ""
+	@echo "** Docker Compose Commands **"
+	@echo ""
+	@echo "make compose-up"
+	@echo "make compose-up-background"
+	@echo "make compose-down"
+	@echo "make compose-ps"
+	@echo "make compose-run"
+	@echo "make compose-run-background"
 	@echo ""
 
-# GoLang shortcuts.
-# Install all the build and lint dependencies.
+#################################################
+# GoLang shortcuts
+#################################################
+
 .PHONY: setup
 setup:
 	@echo "==> Setup..."
@@ -57,27 +76,23 @@ setup:
 	$(GO) generate -v ./...
 	@echo ""
 
-# Build Gen binary.
 .PHONY: build
 build: 
 	@echo "==> Building..."
 	$(GOBUILD) -o $(BINDIR)/$(BINNAME) -ldflags '$(LDFLAGS)' main.go
 	@echo ""
 
-# Install Gen CLI.
 .PHONY: install
 install:
 	@echo "==> Installing..."
 	$(GO) install -x ${SRC}
 	@echo ""
 
-# Lint Go files.
 .PHONY: lint
 lint:
 	@echo "==> Running lint..."
 	golint -set_exit_status ./...
 
-# Running misspell command in Go files.
 .PHONY: misspell
 misspell:
 	@# misspell - Correct commonly misspelled English words in source files
@@ -86,14 +101,12 @@ misspell:
 	find . -name '*.go' -not -path './vendor/*' -not -path './_repos/*' | xargs misspell -error
 	@echo ""
 
-# Running goreleaser
 .PHONY: snapshot
 snapshot:
 	goreleaser --snapshot --rm-dist
 
-# Clean all golang files and packages generated in some build process.
-.PHONY: gclean
-gclean:
+.PHONY: clean
+clean:
 	@echo "==> Cleaning..."
 	$(GO) clean -x -i ${SRC}
 	rm -rf ./bin/* ./vendor ./dist *.tar.gz
