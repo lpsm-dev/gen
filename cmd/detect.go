@@ -93,21 +93,30 @@ func createDetectCmd() *cobra.Command {
 				log.Fatal(err)
 			}
 
-			total := 0.0
+			var total float64
 			for fType, file := range out {
 				size := len(file)
 				final[fType] = size
 				total += float64(size)
 			}
 
-			fmt.Println(final)
-			fmt.Println(total)
+			for key, value := range final {
+				percent := (float64(value) / total) * 100.0
+				fmt.Printf("%s %.2f%%\n", key, percent)
+			}
 
 			return err
 		},
 	}
 	cmd.PersistentFlags().BoolVarP(&all, "all", "a", false, "show all files, including those identifed as non-programming languages")
 	return cmd
+}
+
+func reverseInts(input []int) []int {
+	if len(input) == 0 {
+		return input
+	}
+	return append(reverseInts(input[1:]), input[0])
 }
 
 func readFile(path string, limit int64) ([]byte, error) {
