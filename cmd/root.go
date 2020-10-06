@@ -26,30 +26,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// completionCmd is a struct to represent the root command in cobra.
-type rootCmd struct {
-	cmd *cobra.Command
-}
-
-// rootCmd represents the base command when called without any subcommands.
-func newRootCmd() *rootCmd {
-	cmd := &cobra.Command{
-		Use:   "gen",
-		Short: "A powerful CLI that helps your project startup",
-		Long:  constants.RootHelpMessage,
-	}
-	cmd.AddCommand(
-		createCompletionCmd(),
-		createVersionCmd(),
-		createDetectCmd(),
-	)
-	return &rootCmd{cmd: cmd}
+// RootCmd represents the base command when called without any subcommands.
+var RootCmd = &cobra.Command{
+	Use:   "gen",
+	Short: "A powerful CLI that helps your project startup",
+	Long:  constants.RootHelpMessage,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	if err := newRootCmd().cmd.Execute(); err != nil {
+	if err := RootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}

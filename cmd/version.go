@@ -22,19 +22,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// default flag for show more info about the current version.
-var detail = false
+// pretty flag that show more info about the current version.
+var pretty = false
 
-// Local function that represents the `version` command.
-func createVersionCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:     "version",
-		Aliases: []string{"v"},
-		Short:   "Show the current version of Gen CLI",
-		Run: func(cmd *cobra.Command, args []string) {
-			version.ShowVersion(detail)
-		},
-	}
-	cmd.PersistentFlags().BoolVarP(&detail, "detail", "d", false, "show more details of the current version")
-	return cmd
+// versionCmd represents the version command.
+var versionCmd = &cobra.Command{
+	Use:     "version",
+	Aliases: []string{"v"},
+	Short:   "Show the current version of Gen CLI",
+	Long:    ``,
+	Run: func(cmd *cobra.Command, args []string) {
+		version.ShowVersion(pretty)
+	},
+}
+
+func init() {
+	versionCmd.PersistentFlags().BoolVarP(&pretty, "pretty", "p", false, "show more details about the current version")
+	RootCmd.AddCommand(versionCmd)
 }
