@@ -41,6 +41,7 @@ func newRootCmd() *rootCmd {
 	cmd.AddCommand(
 		createCompletionCmd(),
 		createVersionCmd(),
+		createDetectCmd(),
 	)
 	return &rootCmd{cmd: cmd}
 }

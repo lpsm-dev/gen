@@ -25,7 +25,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// Local function that represents the `completion` command.
+// Local function that represents `completion` command.
 func createCompletionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:                   "completion <shell>",
