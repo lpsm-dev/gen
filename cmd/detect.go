@@ -13,6 +13,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// default flag to show all files, including those identifed as non-programming languages.
+var all = false
+
 func createDetectCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "detect",
@@ -76,11 +79,11 @@ func createDetectCmd() *cobra.Command {
 					return nil
 				}
 
-				/*if !*allLangs &&
+				if !all &&
 					enry.GetLanguageType(language) != enry.Programming &&
 					enry.GetLanguageType(language) != enry.Markup {
 					return nil
-				}*/
+				}
 
 				out[language] = append(out[language], relativePath)
 				return nil
@@ -97,11 +100,13 @@ func createDetectCmd() *cobra.Command {
 				total += float64(size)
 			}
 
-			fmt.Print(final)
+			fmt.Println(final)
+			fmt.Println(total)
 
 			return err
 		},
 	}
+	cmd.PersistentFlags().BoolVarP(&all, "all", "a", false, "show all files, including those identifed as non-programming languages")
 	return cmd
 }
 

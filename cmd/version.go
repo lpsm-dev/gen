@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// detauk flag for show more info about the current version.
+// default flag for show more info about the current version.
 var detail = false
 
 // Local function that represents the `version` command.
