@@ -11,13 +11,13 @@ import (
 // These variables are populated via the Go ldflags.
 // This will be filled in by the compiler.
 var (
-	cliVersion   = "unknown-cli-version"
-	builtDate    = "unknown-built-date"
-	builtBy      = "unknown-built-by"
-	commit       = "unknown-commit"
-	commitShort  = "unknown-short-commit"
-	commitBranch = "unknown-commit-branch"
-	goVersion    = "unknown-go-version"
+	cliVersion   = "0.0.0"                 // value from VERSION file
+	builtDate    = "1970-01-01T00:00:00Z"  // output from `date -u +'%Y-%m-%dT%H:%M:%SZ'`
+	builtBy      = "unknown-built-by"      // built agent (GoRelease, Makefile...)
+	commit       = "unknown-commit"        // output from `git rev-parse HEAD`
+	commitShort  = "unknown-short-commit"  // output from `git rev-parse --short HEAD`
+	commitBranch = "unknown-commit-branch" // output from `git rev-parse --abbrev-ref HEAD`
+	goVersion    = "unknown-go-version"    // output from `go version`
 )
 
 // GetDisplay function - parse current version and return a formatted string.

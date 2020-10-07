@@ -22,8 +22,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// pretty flag that show more info about the current version.
-var pretty = false
+var (
+	short  bool // Local flag - if true print just the version number of Gen CLI.
+	pretty bool // Local flag - if true show more details about the current version of Gen CLI.
+)
 
 // versionCmd represents the version command.
 var versionCmd = &cobra.Command{
@@ -37,6 +39,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
-	versionCmd.PersistentFlags().BoolVarP(&pretty, "pretty", "p", false, "show more details about the current version")
+	versionCmd.PersistentFlags().BoolVarP(&short, "short", "s", false, "Print just the version number of Gen CLI")
+	versionCmd.PersistentFlags().BoolVarP(&pretty, "pretty", "p", false, "Show more details about the current version of Gen CLI")
 	RootCmd.AddCommand(versionCmd)
 }

@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
+
 	"os"
 	"path/filepath"
 
 	"github.com/go-enry/go-enry/v2"
+	"github.com/lpmatos/gen/internal/utils"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +23,7 @@ var detectCmd = &cobra.Command{
 	Use:   "detect",
 	Short: "Detects the programming language used in your project",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		utils.SetLogLevel(logLevel)
 		var err error
 		out := make(map[string][]string, 0)
 		final := make(map[string]int)

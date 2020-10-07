@@ -19,8 +19,19 @@
 
 BINDIR      := $(CURDIR)/bin
 BINNAME     ?= gen
-CLIENT_VERSION=$(shell cat VERSION)
+CURRENT_DIR=$(shell pwd)
+CLIENT_VERSION=$(shell cat ${CURRENT_DIR}/VERSION)
+BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+#################################################
+# Git Variables
+#################################################
+
 GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
+GIT_COMMIT=$(shell git rev-parse HEAD)
+GIT_SHORT_COMMIT=$(shell git rev-parse --short HEAD)
+GIT_TAG=$(shell if [ -z "`git status --porcelain`" ]; then git describe --exact-match --tags HEAD 2>/dev/null; fi)
+GIT_TREE_STATE=$(shell if [ -z "`git status --porcelain`" ]; then echo "clean" ; else echo "dirty"; fi)
 
 #################################################
 # Go variables
@@ -44,12 +55,18 @@ GOBUILD    	:= CGO_ENABLED=1 GOOS=$(GOOS) GOARCH=$(GOARCH) $(GO) build $(BUILD_F
 
 LDFLAGS := -w -s
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.cliVersion=$(CLIENT_VERSION)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.builtDate=$(BUILD_DATE)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.builtBy=makefile"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commit=$(GIT_COMMIT)"
+LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitShort=$(GIT_SHORT_COMMIT)"
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.commitBranch=$(GIT_BRANCH)"
 LDFLAGS += -X "github.com/lpmatos/gen/internal/version.goVersion=$(GO_VERSION)"
 
 #################################################
 # Docker variables
 #################################################
+
+DOCKER_BUILD_DATE=$(shell date -u +'%Y%m%d%H%M%S')
 
 ifeq ($(OS), Windows_NT)
 	DOCKER_CONTAINER_LIST = $(shell docker ps -aq)
