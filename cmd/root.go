@@ -21,6 +21,7 @@ import (
 	"fmt"
 
 	"github.com/lpmatos/gen/internal/constants"
+	"github.com/lpmatos/gen/internal/utils"
 	"github.com/mitchellh/go-homedir"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -28,8 +29,8 @@ import (
 )
 
 var (
-	logLevel string
-	cfgFile  string
+	logLevel string // Local flag - global log level.
+	cfgFile  string // Local flag - global config file.
 )
 
 // RootCmd represents the base command when called without any subcommands.
@@ -39,10 +40,8 @@ var RootCmd = &cobra.Command{
 	Long:  constants.RootHelpMessage,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		// set logLevel if posible
-		logrusLevel, err := log.ParseLevel(viper.GetString("logLevel"))
-		if err == nil {
-			log.SetLevel(logrusLevel)
-		}
+		logrusLevel := viper.GetString("logLevel")
+		utils.SetLogLevel(logrusLevel)
 	},
 }
 
@@ -67,14 +66,9 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	viper.AutomaticEnv()
-
 	// set loglevel if possible
-	logLevel, err := log.ParseLevel(viper.GetString("loglevel"))
-
-	if err == nil {
-		log.SetLevel(logLevel)
-	}
+	logLevel := viper.GetString("loglevel")
+	utils.SetLogLevel(logLevel)
 
 	if cfgFile != "" {
 		// Use config file from the flag.
@@ -90,6 +84,8 @@ func initConfig() {
 		viper.AddConfigPath(home)
 		viper.SetConfigName(".gen")
 	}
+
+	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err == nil {
 		log.Info("Using config file:", viper.ConfigFileUsed())

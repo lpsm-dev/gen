@@ -41,6 +41,20 @@ func GetPrettyDetails() {
 	versionTable.Render()
 }
 
+// GetShortDetails function - create a pretty table and parse this table with current version details.
+func GetShortDetails() {
+	versionTable := table.NewWriter()
+	versionTable.SetOutputMirror(os.Stdout)
+	versionTable.AppendHeader(table.Row{"Info", "Content"})
+	versionTable.AppendRows([]table.Row{
+		{"Build Date", builtDate},
+		{"Commit Short", commitShort},
+		{"Go Version", goVersion},
+	})
+	versionTable.SetStyle(table.StyleColoredBright)
+	versionTable.Render()
+}
+
 // ShowVersion function - check detail flag and show the pretty details if enabled (`true`).
 func ShowVersion(detail bool) {
 	if detail {

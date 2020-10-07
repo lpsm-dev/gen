@@ -34,7 +34,11 @@ var versionCmd = &cobra.Command{
 	Short:   "Show the current version of Gen CLI",
 	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		version.ShowVersion(pretty)
+		if short {
+			version.GetShortDetails()
+		} else {
+			version.ShowVersion(pretty)
+		}
 	},
 }
 
