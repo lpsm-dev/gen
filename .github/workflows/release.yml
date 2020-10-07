@@ -1,13 +1,15 @@
-name: goreleaser
+name: Go Release
 
 on:
   push:
     tags:
-      - '*'
+    - 'v*'
 
 jobs:
   goreleaser:
+    name: "Create Go Release"
     runs-on: ubuntu-latest
+
     steps:
       -
         name: Checkout
@@ -16,18 +18,15 @@ jobs:
           fetch-depth: 0
 
       -
-        name: Extract Branch Name
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        shell: bash
+        name: Extract Git Variables
         id: extract_branch
+        shell: bash
         run: |
           echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
           echo GITHUB_REF=${GITHUB_REF}
           echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
           echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
-          git_branch=${GITHUB_REF##*/}
-          echo $git_branch
-          echo "GIT_BRANCH=$git_branch" >> $GITHUB_ENV
+          echo "GIT_BRANCH=$EXTRACT_GITHUB_REF" >> $GITHUB_ENV
 
       -
         name: Set up Go
@@ -36,7 +35,7 @@ jobs:
           go-version: 1.15
 
       - 
-        name: GoReleaser Variables
+        name: Extract GoReleaser Variables
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
