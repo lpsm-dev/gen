@@ -18,7 +18,7 @@ jobs:
       -
         name: Git
         run: |
-          git branch
+          git rev-parse --abbrev-ref HEAD
 
       -
         name: Set up Go
