@@ -6,31 +6,14 @@ env:
   - GO111MODULE=on
 
 release:
-  # Repo in which the release will be created.
-  # Default is extracted from the origin remote URL.
   github:
     owner: lpmatos
     name: gen
-
-  # If set to true, will not auto-publish the release.
-  # Default is false.
-  draft: true
-
-  # If set to auto, will mark the release as not ready for production
-  # in case there is an indicator for this in the tag e.g. v1.0.0-rc1
-  # If set to true, will mark the release as not ready for production.
-  # Default is false.
-  prerelease: auto
-
-  # You can change the name of the GitHub release.
-  # Default is `{{.Tag}}`
   name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
 
 before:
   hooks:
-    # You may remove this if you don't use go modules.
     - go mod download
-    # you may remove this if you don't need go generate
     - go generate ./...
 
 builds:
@@ -143,6 +126,8 @@ archives:
       - LICENSE
 
 changelog:
+  skip: true
+  sort: asc
   filters:
     # commit messages matching the regexp listed here will be removed from
     # the changelog
@@ -153,9 +138,3 @@ changelog:
       - '^\(travis\)'
       - '^\(tests?'
       - '^Merge pull request'
-
-snapshot:
-  name_template: SNAPSHOT-{{ .Commit }}
-
-checksum:
-  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
