@@ -27,9 +27,9 @@ jobs:
         name: Setup GoReleaser
         id: set
         run: |
-          echo "::set-env name=CLIENT_VERSION::$(cat VERSION)"
+          echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
       - 
-        name: use output
+        name: Use output
         run: |
           echo $CLIENT_VERSION
           echo ${{env.CLIENT_VERSION }}
