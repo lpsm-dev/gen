@@ -19,6 +19,7 @@ jobs:
         name: Git
         run: |
           git rev-parse --abbrev-ref HEAD
+          echo ${{ github.head_ref }}
 
       -
         name: Set up Go
