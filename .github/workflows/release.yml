@@ -16,6 +16,11 @@ jobs:
           fetch-depth: 0
 
       -
+        name: Git
+        run: |
+          git branch
+
+      -
         name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -25,7 +30,7 @@ jobs:
         name: Setup Go Releaser
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-          echo "GIT_BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
+          echo "GIT_BRANCH=master" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
 
       - 
