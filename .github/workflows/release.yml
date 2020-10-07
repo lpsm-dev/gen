@@ -25,10 +25,17 @@ jobs:
           go-version: 1.15
       - 
         name: Setup GoReleaser
+        uses: actions/checkout@v2
+        id: set
         run: |
           export CLIENT_VERSION=$(cat VERSION)
           export GO_VERSION=$(go version)
           export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+      - 
+        name: use output
+        run: |
+          echo $CLIENT_VERSION
+          echo ${{env.CLIENT_VERSION }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
