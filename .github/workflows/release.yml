@@ -2,8 +2,7 @@ name: goreleaser
 
 on:
   push:
-    tags:
-      - '*'
+    branches: [ master ]
 
 jobs:
   goreleaser:
@@ -16,9 +15,17 @@ jobs:
           fetch-depth: 0
 
       -
-        name: Setup Git Variables
+        name: Extract Branch Name
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        shell: bash
+        id: extract_branch
         run: |
+          echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
+          echo GITHUB_REF=${GITHUB_REF}
+          echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
+          echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
           git_branch=${GITHUB_REF##*/}
+          echo $git_branch
           echo "GIT_BRANCH=$git_branch" >> $GITHUB_ENV
 
       -
@@ -28,7 +35,7 @@ jobs:
           go-version: 1.15
 
       - 
-        name: Setup GoReleaser Variables
+        name: GoReleaser Variables
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
@@ -39,12 +46,3 @@ jobs:
           echo "Client Version ${{ env.CLIENT_VERSION }}"
           echo "Git Branch ${{ env.GIT_BRANCH }}"
           echo "Go Version ${{ env.GO_VERSION }}"
-
-      -
-        name: Run Go Releaser
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          version: latest
-          args: release --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
