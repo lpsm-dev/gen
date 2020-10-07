@@ -41,15 +41,6 @@ checksum:
 
 changelog:
   skip: true
-  sort: asc
-  filters:
-    exclude:
-      - '^\(docs\)'
-      - '^\(gitlab-ci\)'
-      - '^\(travis\)'
-      - '^\(tests?'
-      - Merge pull request
-      - Merge branch
 
 archives:
   - id: "gen"
