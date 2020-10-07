@@ -17,11 +17,10 @@
 # Variables
 #################################################
 
-BINDIR      := $(CURDIR)/bin
-BINNAME     ?= gen
-CURRENT_DIR=$(shell pwd)
-CLIENT_VERSION=$(shell cat ${CURRENT_DIR}/VERSION)
-BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+BINDIR      		:= $(CURDIR)/bin
+BINNAME     		?= gen
+CLIENT_VERSION 	:= $(shell cat $(CURDIR)/VERSION)
+BUILD_DATE 			:= $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 
 #################################################
 # Git Variables
