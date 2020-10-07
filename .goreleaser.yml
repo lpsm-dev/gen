@@ -9,7 +9,7 @@ release:
   github:
     owner: lpmatos
     name: gen
-  name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
+  name_template: "{{.ProjectName}}-v{{.Version}}"
 
 before:
   hooks:
@@ -80,12 +80,12 @@ builds:
 
 archives:
   - id: "gen"
-    builds: ['gen']
+    name_template: "{{.ProjectName}}_v{{.Version}}_{{.Os}}-{{.Arch}}"
+    builds: [ "gen" ]
     format: tar.gz
     format_overrides:
       - goos: windows
         format: zip
-    name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"
     replacements:
       amd64: 64bit
       386: 32bit
@@ -103,12 +103,12 @@ archives:
       - README.md
       
   - id: "gen_extended"
-    builds: ['gen_extended_windows', 'gen_extended_linux']
+    name_template: "{{.ProjectName}}_extended_v{{.Version}}_{{.Os}}-{{.Arch}}"
+    builds: [ "gen_extended_windows", "gen_extended_linux" ]
     format: tar.gz
     format_overrides:
       - goos: windows
         format: zip
-    name_template: "{{.ProjectName}}_extended_{{.Version}}_{{.Os}}-{{.Arch}}"
     replacements:
       amd64: 64bit
       386: 32bit
@@ -138,3 +138,6 @@ changelog:
       - '^\(travis\)'
       - '^\(tests?'
       - '^Merge pull request'
+
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
