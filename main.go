@@ -18,20 +18,9 @@ limitations under the License.
 package main
 
 import (
-	"fmt"
-
-	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/cmd"
 )
 
 func main() {
-	title := func() {
-		figure.NewColorFigure("Gen", "", "yellow", false).Print()
-		endline := func() {
-			fmt.Println("")
-		}
-		endline()
-	}
-	title()
 	cmd.Execute()
 }

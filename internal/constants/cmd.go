@@ -5,8 +5,9 @@ const RootHelpMessage = `Description:
 
 A CLI tool that automate your project startup:
 
-- Template project with pretty README.md, LICENSE, gitignore
-- Good Commit Messages Pattern with Conventional Commits
+- Template project with pretty README.md.
+- Automate gen LICENSE, gitignore, gitattributes.
+- Pattern with Conventional Commits.
 `
 
 // CompletionHelpMessage - return the long description of completion command.
@@ -26,10 +27,4 @@ $ gen completion fish | source
 
 # To load completions for each session, execute once:
 $ gen completion fish > ~/.config/fish/completions/gen.fish
-
-# To load completions for each session, execute once:
-Linux:
-	$ gen completion bash > /etc/bash_completion.d/gen
-MacOS:
-	$ gen completion bash > /usr/local/etc/bash_completion.d/gen
 `

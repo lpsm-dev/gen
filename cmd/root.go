@@ -20,6 +20,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/internal/constants"
 	"github.com/lpmatos/gen/internal/utils"
 	"github.com/mitchellh/go-homedir"
@@ -62,6 +63,15 @@ func init() {
 	viper.BindPFlag("logLevel", RootCmd.PersistentFlags().Lookup("logLevel"))
 
 	viper.SetDefault("logLevel", "info")
+
+	title := func() {
+		figure.NewColorFigure("Gen", "", "yellow", false).Print()
+		endline := func() {
+			fmt.Println("")
+		}
+		endline()
+	}
+	title()
 }
 
 // initConfig reads in config file and ENV variables if set.

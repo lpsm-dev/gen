@@ -1,7 +1,3 @@
 # A default configuration for gen CLI project.
 
-gitlabUrl:
-gitlabToken:
-gitlabNamespace:
-
 logLevel:
