@@ -141,3 +141,21 @@ archives:
     files:
       - README.md
       - LICENSE
+
+changelog:
+  filters:
+    # commit messages matching the regexp listed here will be removed from
+    # the changelog
+    # Default is empty
+    exclude:
+      - '^\(docs\)'
+      - '^\(gitlab-ci\)'
+      - '^\(travis\)'
+      - '^\(tests?'
+      - '^Merge pull request'
+
+snapshot:
+  name_template: SNAPSHOT-{{ .Commit }}
+
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
