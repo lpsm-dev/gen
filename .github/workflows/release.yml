@@ -22,21 +22,17 @@ jobs:
           go-version: 1.15
 
       - 
-        name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v2.x
-
-      - 
         name: Setup Go Releaser
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-          echo " - ${{ env.GITHUB_REF_SLUG }}"   
+          echo "GIT_BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
 
       - 
         name: Show Variables
         run: |
           echo "Client Version ${{ env.CLIENT_VERSION }}"
-          echo "Git Branch ${{ env.GITHUB_REF_SLUG }}"
+          echo "Git Branch ${{ env.GIT_BRANCH }}"
           echo "Go Version ${{ env.GO_VERSION }}"
 
       -
