@@ -21,9 +21,9 @@ jobs:
 
       -
         name: Setup Git
-        uses: actions/checkout@v2
         run: |
-          echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+          echo running on branch ${GITHUB_REF##*/}
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       -
         name: Set up Go
