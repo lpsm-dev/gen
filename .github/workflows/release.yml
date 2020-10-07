@@ -18,24 +18,32 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      -
+        name: Setup Git
+        uses: actions/checkout@v2
+        run: |
+          echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+
       -
         name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
+
       - 
         name: Setup GoReleaser
-        id: set
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-          echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
+
       - 
-        name: Use output
+        name: Show Variables
         run: |
-          echo ${{env.CLIENT_VERSION }}
-          echo ${{env.GIT_BRANCH }}
-          echo ${{env.GO_VERSION }}
+          echo "Client Version ${{env.CLIENT_VERSION }}"
+          echo "Git Branch ${{env.GIT_BRANCH }}"
+          echo "Go Version ${{env.GO_VERSION }}"
+
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
