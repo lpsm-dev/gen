@@ -5,10 +5,6 @@ on:
     tags:
       - '*'
 
-env:
-  NODE_VERSION: "12.x"
-  APP_VERSION: "1.0.O"
-
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
@@ -20,32 +16,27 @@ jobs:
           fetch-depth: 0
 
       -
-        name: Setup Git
-        run: |
-          echo running on branch ${GITHUB_REF##*/}
-          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
-
-      -
         name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
 
       - 
-        name: Setup GoReleaser
+        name: Setup Go Releaser
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+          echo "GIT_BRANCH={{ env.GITHUB_REF }}" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
 
       - 
         name: Show Variables
         run: |
-          echo "Client Version ${{env.CLIENT_VERSION }}"
-          echo "Git Branch ${{env.GIT_BRANCH }}"
-          echo "Go Version ${{env.GO_VERSION }}"
+          echo "Client Version ${{ env.CLIENT_VERSION }}"
+          echo "Git Branch ${{ env.GIT_BRANCH }}"
+          echo "Go Version ${{ env.GO_VERSION }}"
 
       -
-        name: Run GoReleaser
+        name: Run Go Releaser
         uses: goreleaser/goreleaser-action@v2
         with:
           version: latest
