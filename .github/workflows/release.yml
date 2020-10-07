@@ -28,11 +28,14 @@ jobs:
         id: set
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+          echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+          echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
       - 
         name: Use output
         run: |
-          echo $CLIENT_VERSION
           echo ${{env.CLIENT_VERSION }}
+          echo ${{env.GIT_BRANCH }}
+          echo ${{env.GO_VERSION }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
