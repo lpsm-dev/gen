@@ -22,6 +22,7 @@ jobs:
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
+        run: make snapshot
         with:
           version: latest
           args: release --rm-dist
