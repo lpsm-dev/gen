@@ -17,8 +17,7 @@ jobs:
       -
         name: Git
         run: |
-          git rev-parse --abbrev-ref HEAD
-          echo ${{ github.head_ref }}
+          echo "GIT_BRANCH= ${{ github.head_ref }}" >> $GITHUB_ENV
 
       -
         name: Set up Go
@@ -30,7 +29,6 @@ jobs:
         name: Setup Go Releaser
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-          echo "GIT_BRANCH=master" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
 
       - 
