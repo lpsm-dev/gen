@@ -2,14 +2,14 @@
 # Make sure to check the documentation at http://goreleaser.com
 project_name: gen
 
-env:
-  - GO111MODULE=on
-
 release:
   github:
     owner: lpmatos
     name: gen
   name_template: "{{.ProjectName}}-v{{.Version}}"
+
+env:
+  - GO111MODULE=on
 
 before:
   hooks:
@@ -21,123 +21,49 @@ builds:
     id: gen
     env:
       - CGO_ENABLED=0
-    flags:
-      - -buildmode
-      - exe
     goos:
       - linux
+      - darwin
       - windows
-      - freebsd
-      - netbsd
-      - openbsd
-      - dragonfly
     goarch:
-      - amd64
       - 386
+      - amd64
       - arm
       - arm64
-    goarm:
-      - 7
-    ignore:
-      - goarch: 386
-    ldflags:
-     - -s -w -X "github.com/lpmatos/gen/internal/version.cliVersion={{.Env.CLIENT_VERSION}}" -X "github.com/lpmatos/gen/internal/version.builtDate={{.CommitDate}}" -X "github.com/lpmatos/gen/internal/version.builtBy=goreleaser" -X "github.com/lpmatos/gen/internal/version.commit={{.Commit}}" -X "github.com/lpmatos/gen/internal/version.commitShort={{.ShortCommit }}" -X "github.com/lpmatos/gen/internal/version.commitBranch={{.Env.GIT_BRANCH}}" -X "github.com/lpmatos/gen/internal/version.goVersion={{.Env.GO_VERSION}}"
-  
-  - binary: gen
-    id: gen_extended_windows
-    ldflags:
-      - -s -w -X "github.com/lpmatos/gen/internal/version.cliVersion={{.Env.CLIENT_VERSION}}" -X "github.com/lpmatos/gen/internal/version.builtDate={{.CommitDate}}" -X "github.com/lpmatos/gen/internal/version.builtBy=goreleaser" -X "github.com/lpmatos/gen/internal/version.commit={{.Commit}}" -X "github.com/lpmatos/gen/internal/version.commitShort={{.ShortCommit }}" -X "github.com/lpmatos/gen/internal/version.commitBranch={{.Env.GIT_BRANCH}}" -X "github.com/lpmatos/gen/internal/version.goVersion={{.Env.GO_VERSION}}"
-      - "-extldflags '-static'"
-    env:
-      - CGO_ENABLED=1
-      - CC=x86_64-w64-mingw32-gcc
-      - CXX=x86_64-w64-mingw32-g++
+    mod_timestamp: '{{ .CommitTimestamp }}'
     flags:
-      - -buildmode
-      - exe
-      - -tags
-      - extended
-    goos:
-      - windows
-    goarch:
-      - amd64
-
-  - binary: gen
-    id: gen_extended_linux
+      - -trimpath
     ldflags:
-      - -s -w -X "github.com/lpmatos/gen/internal/version.cliVersion={{.Env.CLIENT_VERSION}}" -X "github.com/lpmatos/gen/internal/version.builtDate={{.CommitDate}}" -X "github.com/lpmatos/gen/internal/version.builtBy=goreleaser" -X "github.com/lpmatos/gen/internal/version.commit={{.Commit}}" -X "github.com/lpmatos/gen/internal/version.commitShort={{.ShortCommit }}" -X "github.com/lpmatos/gen/internal/version.commitBranch={{.Env.GIT_BRANCH}}" -X "github.com/lpmatos/gen/internal/version.goVersion={{.Env.GO_VERSION}}"
-    env:
-      - CGO_ENABLED=1
-    flags:
-      - -buildmode
-      - exe
-      - -tags
-      - extended
-    goos:
-      - linux
-    goarch:
-      - amd64
+     - -s -w -X "github.com/lpmatos/gen/internal/version.cliVersion={{.Env.CLIENT_VERSION}}" -X "github.com/lpmatos/gen/internal/version.builtDate={{.CommitDate}}" -X "github.com/lpmatos/gen/internal/version.builtBy=goreleaser" -X "github.com/lpmatos/gen/internal/version.commit={{.Commit}}" -X "github.com/lpmatos/gen/internal/version.commitShort={{.ShortCommit}}" -X "github.com/lpmatos/gen/internal/version.commitBranch={{.Env.GIT_BRANCH}}" -X "github.com/lpmatos/gen/internal/version.goVersion={{.Env.GO_VERSION}}"
 
-archives:
-  - id: "gen"
-    name_template: "{{.ProjectName}}_v{{.Version}}_{{.Os}}-{{.Arch}}"
-    builds: [ "gen" ]
-    format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
-    replacements:
-      amd64: 64bit
-      386: 32bit
-      arm: ARM
-      arm64: ARM64
-      darwin: macOS
-      linux: Linux
-      windows: Windows
-      openbsd: OpenBSD
-      netbsd: NetBSD
-      freebsd: FreeBSD
-      dragonfly: DragonFlyBSD
-    files:
-      - LICENSE
-      - README.md
-      
-  - id: "gen_extended"
-    name_template: "{{.ProjectName}}_extended_v{{.Version}}_{{.Os}}-{{.Arch}}"
-    builds: [ "gen_extended_windows", "gen_extended_linux" ]
-    format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
-    replacements:
-      amd64: 64bit
-      386: 32bit
-      arm: ARM
-      arm64: ARM64
-      darwin: macOS
-      linux: Linux
-      windows: Windows
-      openbsd: OpenBSD
-      netbsd: NetBSD
-      freebsd: FreeBSD
-      dragonfly: DragonFlyBSD
-    files:
-      - README.md
-      - LICENSE
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
 
 changelog:
   skip: true
   sort: asc
   filters:
-    # commit messages matching the regexp listed here will be removed from
-    # the changelog
-    # Default is empty
     exclude:
       - '^\(docs\)'
       - '^\(gitlab-ci\)'
       - '^\(travis\)'
       - '^\(tests?'
-      - '^Merge pull request'
+      - Merge pull request
+      - Merge branch
 
-checksum:
-  name_template: '{{ .ProjectName }}_checksums.txt'
+archives:
+  - id: "gen"
+    name_template: "{{.ProjectName}}_v{{.Version}}_{{.Os}}-{{.Arch}}"
+    builds: [ "gen" ]
+    format_overrides:
+      - goos: windows
+        format: zip
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    files:
+      - LICENSE
+      - README.md
