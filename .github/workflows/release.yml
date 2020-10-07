@@ -44,3 +44,12 @@ jobs:
           echo "Git Branch ${{ env.GIT_BRANCH }}"
           echo "Client Version ${{ env.CLIENT_VERSION }}"
           echo "Go Version ${{ env.GO_VERSION }}"
+
+      -
+        name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
