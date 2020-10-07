@@ -19,13 +19,10 @@ jobs:
 
       -
         name: Extract Git Variables
-        id: extract_branch
+        id: extract_git_variables
         shell: bash
         run: |
-          echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
-          echo GITHUB_REF=${GITHUB_REF}
           echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
-          echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
           echo "GIT_BRANCH=$EXTRACT_GITHUB_REF" >> $GITHUB_ENV
 
       -
@@ -36,6 +33,7 @@ jobs:
 
       - 
         name: Extract GoReleaser Variables
+        id: extract_goreleaser_variables
         run: |
           echo "CLIENT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
           echo "GO_VERSION=$(go version)" >> $GITHUB_ENV
@@ -43,6 +41,6 @@ jobs:
       - 
         name: Show Variables
         run: |
-          echo "Client Version ${{ env.CLIENT_VERSION }}"
           echo "Git Branch ${{ env.GIT_BRANCH }}"
+          echo "Client Version ${{ env.CLIENT_VERSION }}"
           echo "Go Version ${{ env.GO_VERSION }}"
