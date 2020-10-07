@@ -27,9 +27,7 @@ jobs:
         name: Setup GoReleaser
         id: set
         run: |
-          export CLIENT_VERSION=$(cat VERSION)
-          export GO_VERSION=$(go version)
-          export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          echo "::set-env name=CLIENT_VERSION::$(cat VERSION)"
       - 
         name: use output
         run: |
