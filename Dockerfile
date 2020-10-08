@@ -15,6 +15,9 @@ LABEL maintainer="Lucca Pessoa da Silva Matos - luccapsm@gmail.com" \
 COPY --from=builder [ "/build/bin/gen", "/usr/local/bin/gen" ]
 
 RUN chmod +x /usr/local/bin/gen
-RUN apk --no-cache add ca-certificates=20191127-r4 shadow=4.8.1-r0 git=2.26.2-r0 bash=5.0.17-r0
+RUN apk --no-cache add ca-certificates=20191127-r4 \
+      shadow=4.8.1-r0 \
+      git=2.26.2-r0 \
+      bash=5.0.17-r0
 
 CMD ["gen"]

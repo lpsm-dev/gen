@@ -46,18 +46,17 @@ package-lock.json
 
 # End of https://www.toptal.com/developers/gitignore/api/go
 
+# Folders
+static/
+bin/
+dist/
+
 # Always ignore files
 *.DS_Store
 .idea
 *.sublime-*
-
 *.lock
 *.vscode
 *.idea
 *.txt
 *.tar.gz
-
-# Folders
-static/
-bin/
-dist/

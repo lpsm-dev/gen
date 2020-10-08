@@ -60,6 +60,7 @@ This will give access on your **local machine**.
 * Create project structure.
 * Check project structure.
 * Automate bash completion. 
+* Auto-detect the programming language used.
 
 ## ➤ Development with Docker
 
