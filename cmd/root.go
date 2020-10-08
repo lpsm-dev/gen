@@ -19,6 +19,7 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/common-nighthawk/go-figure"
 	"github.com/lpmatos/gen/internal/constants"
@@ -49,6 +50,14 @@ var RootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	title := func() {
+		figure.NewColorFigure("Gen", "", "yellow", false).Print()
+		endline := func() {
+			fmt.Println("")
+		}
+		endline()
+	}
+	title()
 	if err := RootCmd.Execute(); err != nil {
 		log.Fatalf("Error while executing RootCmd: %s", err)
 	}
@@ -63,15 +72,6 @@ func init() {
 	viper.BindPFlag("logLevel", RootCmd.PersistentFlags().Lookup("logLevel"))
 
 	viper.SetDefault("logLevel", "info")
-
-	title := func() {
-		figure.NewColorFigure("Gen", "", "yellow", false).Print()
-		endline := func() {
-			fmt.Println("")
-		}
-		endline()
-	}
-	title()
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -89,19 +89,19 @@ func initConfig() {
 		if err != nil {
 			log.Fatalf("Error while finding home directory: %s", err)
 		}
-
 		// Search config in home directory with name ".gen" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigName(".gen")
 	}
 
-	viper.AutomaticEnv()
+	viper.AutomaticEnv() // read in environment variables that match
 
-	if err := viper.ReadInConfig(); err == nil {
-		log.Info("Using config file:", viper.ConfigFileUsed())
-		fmt.Println()
-	} else {
-		log.Info("No config file found")
-		fmt.Println()
+	// If a config file is found, read it in.
+	if err := viper.ReadInConfig(); err != nil {
+		// NOTE: the config file is not required to exists
+		// raise an error if error is other than config file not found
+		if !strings.Contains(err.Error(), `config file ".gen.yaml" not found`) {
+			log.Error(err)
+		}
 	}
 }

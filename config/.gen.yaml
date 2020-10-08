@@ -1,3 +1,14 @@
 # A default configuration for gen CLI project.
 
-logLevel:
+globaL:
+  logLevel:
+
+gitlab:
+  url:
+  token:
+  namespace:
+
+gitignore:
+  local:
+  repoUrl:
+  api:

@@ -28,7 +28,7 @@ import (
 // completionCmd represents the completion command.
 var completionCmd = &cobra.Command{
 	Use:                   "completion <shell>",
-	Short:                 "Load shell completion's",
+	Short:                 "Load shell completions",
 	Long:                  constants.CompletionHelpMessage,
 	Hidden:                false,
 	DisableFlagsInUseLine: true,
