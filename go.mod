@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/common-nighthawk/go-figure v0.0.0-20200609044655-c4b36f998cf2
-	github.com/go-enry/go-enry/v2 v2.7.1
+	github.com/go-enry/go-enry/v2 v2.8.4
 	github.com/go-openapi/strfmt v0.19.5 // indirect
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kr/text v0.2.0 // indirect
